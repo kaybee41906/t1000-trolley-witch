@@ -8,9 +8,10 @@
 var Main = {};
 
 Main.initialize = function() {
+	Config.initialize();
 	Renderer.initialize();
 
-	this.gameLoop = setInterval(this.run, 1000/Config.fps);
+	this.gameLoop = setInterval(Main.run, 1000/Config.fps);
 	this.changeState (null, GameState.MainMenu);
 }
 
@@ -39,9 +40,9 @@ Main.run = function() {
 
 Main.changeState = function(previousState, newState) {
 	if(previousState == null)
-		this.state = newState;
+		this.gameState = newState;
 
-	switch(this.state) {
+	switch(this.gameState) {
 		case GameState.MainMenu:
 			//Creates buttons
 			MainMenu.initialize();

@@ -8,7 +8,6 @@
 var Renderer = {};
 
 Renderer.initialize = function() {
-	console.log(window);
 	this.screenWidth = window.innerWidth;
 	this.screenHeight = window.innerHeight;
 
@@ -19,7 +18,6 @@ Renderer.initialize = function() {
 	this.canvas.height = this.screenHeight;
 
 	this.context = this.canvas.getContext("2d");
-	this.context.save();
 }
 
 Renderer.resize = function() {
@@ -34,8 +32,12 @@ Renderer.resize = function() {
 }
 
 Renderer.render = function() {
-	switch(this.state) {
+	Renderer.clear();
+	
+	switch(Main.gameState) {
 		case GameState.MainMenu:
+			this.context.fillStyle = "#6495ed";
+			this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);	
 			MainMenu.render();
 			break;
 		case GameState.CharacterSelect:
@@ -49,7 +51,10 @@ Renderer.render = function() {
 		case GameState.Win:
 			break;
 	}
-	this.context.fillStyle = "#6495ed";
-	this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-	this.context.restore();
+
+	
+}
+
+Renderer.clear = function() {
+	this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
 }

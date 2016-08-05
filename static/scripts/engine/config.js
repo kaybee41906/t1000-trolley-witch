@@ -11,6 +11,9 @@ Config.initialize = function() {
 	this.fps = 60;
 
 	this.static = window.location.pathname.split("index")[0] + "static/";
+
+	this.titleFont = "60px Comic Sans MS";
+	this.titleColor = "black";
 }
 
 var GameState = 

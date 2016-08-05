@@ -13,11 +13,13 @@ MainMenu.initialize = function() {
 }
 
 MainMenu.update = function() {
-	
+
 }
 
 MainMenu.render = function() {
-	this.context.fillStyle = "#6495ed";
-	this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-	this.context.restore();
+	var ctx = Renderer.context;
+	ctx.font = Config.titleFont;
+	ctx.fillStyle = Config.titleColor;
+	ctx.textAlign = "center";
+	ctx.fillText("T-1000: Trolly Witch", Renderer.canvas.width/2, Renderer.canvas.height/2);
 }
