@@ -34,6 +34,21 @@ Renderer.resize = function() {
 }
 
 Renderer.render = function() {
+	switch(this.state) {
+		case GameState.MainMenu:
+			MainMenu.render();
+			break;
+		case GameState.CharacterSelect:
+			break;
+		case GameState.Game:
+			break;
+		case GameState.Pause:
+			break;
+		case GameState.GameOver:
+			break;
+		case GameState.Win:
+			break;
+	}
 	this.context.fillStyle = "#6495ed";
 	this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 	this.context.restore();
