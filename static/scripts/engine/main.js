@@ -60,5 +60,9 @@ Main.changeState = function(previousState, newState) {
 	}
 }
 
+Main.quit = function() {
+	window.close();
+}
+
 $(document).ready(Main.initialize.bind(Main));
 $(window).resize(Renderer.resize.bind(Renderer));
