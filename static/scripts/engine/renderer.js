@@ -20,33 +20,58 @@ Renderer.initialize = function() {
 	this.context = this.canvas.getContext("2d");
 
 	this.resourceCache = [];
+	this.loadingResources = [];
 	this.loadedResources = [];
 
 	for (var key in this.sprites) {
 		if(this.sprites.hasOwnProperty(key)) {
 			$.each(this.sprites[key], function(key, val) {
-				console.log("Loading resource [%s]", val.url);
 				while(!Renderer.loadResource(val.url)) {
 					Renderer.renderLoadingScreen();
 				}
 			});
 		}
 	}
+
+	//Load missing texture
+	this.noTexture = new Image();
+	this.noTexture.src = "static/images/general/no_texture.png";
 }
 
 Renderer.sprites = {
 	"buttons": [
-		{"name": "main_menu", "url": "static/images/buttons/main_menu.png"},
-		{"name": "character_select", "url": "static/images/buttons/character_select.png"},
-		{"name": "start_game", "url": "static/images/buttons/start_game.png"},
-		{"name": "resume_game", "url": "static/images/buttons/resume_game.png"},
-		{"name": "quit_game", "url": "static/images/buttons/quit_game.png"}
+		{"name": "main_menu_btn", "url": "static/images/buttons/main_menu.png"},
+		{"name": "character_select_btn", "url": "static/images/buttons/character_select.png"},
+		{"name": "start_game_btn", "url": "static/images/buttons/start_game.png"},
+		{"name": "resume_game_btn", "url": "static/images/buttons/resume_game.png"},
+		{"name": "quit_game_btn", "url": "static/images/buttons/quit_game.png"}
 	], "spriteSheets": [
 	], "backgrounds": [
 		{"name": "main_menu_background", "url": "static/images/backgrounds/main_menu.jpg"}
 	], "effects": [
 	]
 };
+
+Renderer.getSprite = function(name) {
+	var returnVal = null;
+
+	for (var key in this.sprites) {
+		if(this.sprites.hasOwnProperty(key)) {
+			$.each(this.sprites[key], function(key, val) {
+				if(val.name == name) {
+					returnVal = val;
+				}
+			});
+		}
+	}
+	return returnVal;
+}
+
+Renderer.getResource = function(resource_obj) {
+	if(resource_obj == null)
+		return Renderer.noTexture;
+	return Renderer.loadedResources[resource_obj.url];
+}
 
 Renderer.loadResource = function(url) {
 	if(Renderer.resourceCache[url]) {
@@ -56,8 +81,15 @@ Renderer.loadResource = function(url) {
 		
 		var img = new Image();
 		img.onload = function() {
-			console.log("resource loaded [%s]", url);
-			Renderer.loadedResources[url] = Renderer.resourceCache[url];
+			Renderer.loadingResources[url] = Renderer.resourceCache[url];
+
+			var percentComplete = (Object.keys(Renderer.loadingResources).length / Object.keys(Renderer.resourceCache).length) * 100;
+
+			if(percentComplete >= 100) {
+				Renderer.resourceCache = [];
+				Renderer.loadedResources = Renderer.loadingResources;
+				Renderer.loadingResources = [];
+			}
 
 			return true;
 		}
@@ -101,10 +133,7 @@ Renderer.render = function() {
 }
 
 Renderer.renderLoadingScreen = function() {
-	var percentComplete = (Object.keys(Renderer.loadedResources).length / Object.keys(Renderer.resourceCache).length) * 100;
-	console.log(percentComplete);
-	if(percentComplete >= 100)
-		Renderer.resourceCache = [];	
+	var percentComplete = (Object.keys(Renderer.loadingResources).length / Object.keys(Renderer.resourceCache).length) * 100;
 
 	var ctx = Renderer.context;
 	ctx.font = Config.titlefont;

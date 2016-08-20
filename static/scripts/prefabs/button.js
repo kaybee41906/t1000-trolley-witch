@@ -23,7 +23,8 @@ Button.prototype.resize = function(x, y, height, width) {
 
 Button.prototype.render = function() {
 	var ctx = Renderer.context;
-	
+	var img = Renderer.getResource(this.sprite);
+	ctx.drawImage(img, this.x, this.y, this.width, this.height)
 }
 
 Button.prototype.onClick = function(event) {

@@ -11,8 +11,10 @@ MainMenu.initialize = function() {
 	this.buttons = [];
 	this.background = Config.static + "images/main_background.jpg";
 
-	var csButton = new Button(10, 10, 100, 100, "images/character_select_button.png", MainMenu.characterSelect);
+	var csButton = new Button(10, 10, 100, 50, Renderer.getSprite("character_select_btn"), MainMenu.characterSelect);
+	var quitBtn = new Button(10, 70, 100, 50, Renderer.getSprite("quit_game_btn"), MainMenu.quit);
 	this.buttons.push(csButton);
+	this.buttons.push(quitBtn);
 }
 
 MainMenu.update = function() {
