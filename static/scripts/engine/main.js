@@ -13,7 +13,7 @@ Main.initialize = function() {
 	InputManager.initialize();
 
 	this.gameLoop = setInterval(Main.run, 1000/Config.fps);
-	this.changeState (null, GameState.MainMenu);
+	this.changeState (null, GameState.Game);
 }
 
 Main.update = function() {
@@ -22,8 +22,10 @@ Main.update = function() {
 			MainMenu.update();
 			break;
 		case GameState.CharacterSelect:
+			CharacterSelect.update();
 			break;
 		case GameState.Game:
+			Game.update();
 			break;
 		case GameState.Pause:
 			break;
@@ -40,8 +42,7 @@ Main.run = function() {
 }
 
 Main.changeState = function(previousState, newState) {
-	if(previousState == null)
-		this.gameState = newState;
+	this.gameState = newState;
 
 	switch(this.gameState) {
 		case GameState.MainMenu:
@@ -49,8 +50,10 @@ Main.changeState = function(previousState, newState) {
 			MainMenu.initialize();
 			break;
 		case GameState.CharacterSelect:
+			CharacterSelect.initialize();
 			break;
 		case GameState.Game:
+			Game.initialize();
 			break;
 		case GameState.Pause:
 			break;

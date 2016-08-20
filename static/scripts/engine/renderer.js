@@ -47,7 +47,7 @@ Renderer.sprites = {
 		{"name": "quit_game_btn", "url": "static/images/buttons/quit_game.png"}
 	], "spriteSheets": [
 	], "backgrounds": [
-		{"name": "main_menu_background", "url": "static/images/backgrounds/main_menu.jpg"}
+		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"}
 	], "effects": [
 	]
 };
@@ -120,8 +120,10 @@ Renderer.render = function() {
 			MainMenu.render();
 			break;
 		case GameState.CharacterSelect:
+			CharacterSelect.render();
 			break;
 		case GameState.Game:
+			Game.render();
 			break;
 		case GameState.Pause:
 			break;

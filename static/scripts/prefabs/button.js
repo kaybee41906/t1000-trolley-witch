@@ -12,7 +12,8 @@ function Button(x, y, width, height, sprite, callback) {
 	this.height = height;
 	this.sprite = sprite;
 	this.callback = callback;
-	this.boundingBox = new AABB(this.x, this.y, this.x + this.width, this.y + this.height)
+	this.boundingBox = new AABB(this.x, this.y, this.x + this.width, this.y + this.height);
+	this.pushed = false;
 }
 
 Button.prototype.resize = function(x, y, height, width) {
@@ -30,6 +31,15 @@ Button.prototype.render = function() {
 }
 
 Button.prototype.update = function() {
-	if(this.boundingBox.comparePoint(InputManager.mouse.x, InputManager.mouse.y))
-		console.log("in");
+	if(this.boundingBox.comparePoint(InputManager.mouse.x, InputManager.mouse.y)) {
+		if(InputManager.mouseDown){
+			this.pushed = true;
+		}
+		if(this.pushed && !InputManager.mouseDown) {
+			this.callback();
+		}
+	}
+	else {
+		this.pushed = false;
+	}
 }
