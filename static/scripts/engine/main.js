@@ -10,13 +10,14 @@ var Main = {};
 Main.initialize = function() {
 	Config.initialize();
 	Renderer.initialize();
+	InputManager.initialize();
 
 	this.gameLoop = setInterval(Main.run, 1000/Config.fps);
 	this.changeState (null, GameState.MainMenu);
 }
 
 Main.update = function() {
-	switch(this.state) {
+	switch(this.gameState) {
 		case GameState.MainMenu:
 			MainMenu.update();
 			break;

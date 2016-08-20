@@ -85,7 +85,7 @@ Renderer.loadResource = function(url) {
 
 			var percentComplete = (Object.keys(Renderer.loadingResources).length / Object.keys(Renderer.resourceCache).length) * 100;
 
-			if(percentComplete >= 100) {
+			if(percentComplete >= 100) { 
 				Renderer.resourceCache = [];
 				Renderer.loadedResources = Renderer.loadingResources;
 				Renderer.loadingResources = [];

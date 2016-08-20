@@ -18,12 +18,8 @@ MainMenu.initialize = function() {
 }
 
 MainMenu.update = function() {
-	
-}
-
-MainMenu.onClick = function(event) {
 	$.each(this.buttons, function(key, button) {
-		button.onclick(event);
+		button.update();
 	});
 }
 

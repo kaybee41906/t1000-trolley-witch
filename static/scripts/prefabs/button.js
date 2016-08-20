@@ -12,6 +12,7 @@ function Button(x, y, width, height, sprite, callback) {
 	this.height = height;
 	this.sprite = sprite;
 	this.callback = callback;
+	this.boundingBox = new AABB(this.x, this.y, this.x + this.width, this.y + this.height)
 }
 
 Button.prototype.resize = function(x, y, height, width) {
@@ -19,6 +20,7 @@ Button.prototype.resize = function(x, y, height, width) {
 	this.y = y;
 	this.width = width;
 	this.height = height;
+	this.boundingBox = new AABB(this.x, this.y, this.x + this.width, this.y + this.height)
 }
 
 Button.prototype.render = function() {
@@ -27,6 +29,7 @@ Button.prototype.render = function() {
 	ctx.drawImage(img, this.x, this.y, this.width, this.height)
 }
 
-Button.prototype.onClick = function(event) {
-	console.log("[%s], [%s]", event.pageX, event.pageY);
+Button.prototype.update = function() {
+	if(this.boundingBox.comparePoint(InputManager.mouse.x, InputManager.mouse.y))
+		console.log("in");
 }

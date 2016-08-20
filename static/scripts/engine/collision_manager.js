@@ -1,0 +1,3 @@
+// Collision Manager
+
+var CollisionManager = {}
