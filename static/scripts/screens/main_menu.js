@@ -39,6 +39,12 @@ MainMenu.render = function() {
 	});
 }
 
+MainMenu.resize = function() {
+	$.each(this.buttons, function(key, button) {
+		button.resize();
+	});
+}
+
 MainMenu.characterSelect = function() {
 	Main.changeState(Main.gameState, GameState.CharacterSelect);
 }

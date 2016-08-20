@@ -14,6 +14,10 @@ Config.initialize = function() {
 
 	this.titleFont = "60px Comic Sans MS";
 	this.titleColor = "black";
+
+	this.masterWidth = 1920;
+	this.masterHeight = 1080;
+	this.masterRatio = 16/9;
 }
 
 var GameState = 

@@ -68,5 +68,27 @@ Main.quit = function() {
 	window.close();
 }
 
+Main.resize = function() {
+	Renderer.resize();
+
+	switch(this.gameState) {
+		case GameState.MainMenu:
+			MainMenu.resize();
+			break;
+		case GameState.CharacterSelect:
+			CharacterSelect.resize();
+			break;
+		case GameState.Game:
+			Game.resize();
+			break;
+		case GameState.Pause:
+			break;
+		case GameState.GameOver:
+			break;
+		case GameState.Win:
+			break;
+	}
+}
+
 $(document).ready(Main.initialize.bind(Main));
-$(window).resize(Renderer.resize.bind(Renderer));
+$(window).resize(Main.resize.bind(Main));

@@ -6,21 +6,25 @@
 */
 
 function Button(x, y, width, height, sprite, callback) {
-	this.x = x;
-	this.y = y;
-	this.width = width;
-	this.height = height;
+	this.baseDims = {'x': x, 'y': y, 'width': width, 'height': height};
+	this.x = this.baseDims.x * Renderer.conversionRatio;
+	this.y = this.baseDims.y * Renderer.conversionRatio;
+	this.width = this.baseDims.width * Renderer.conversionRatio;
+	this.height = this.baseDims.height * Renderer.conversionRatio;
 	this.sprite = sprite;
 	this.callback = callback;
-	this.boundingBox = new AABB(this.x, this.y, this.x + this.width, this.y + this.height);
+	this.boundingBox = new AABB(this.x, 
+								this.y, 
+								this.x + this.width, 
+								this.y + this.height);
 	this.pushed = false;
 }
 
-Button.prototype.resize = function(x, y, height, width) {
-	this.x = x;
-	this.y = y;
-	this.width = width;
-	this.height = height;
+Button.prototype.resize = function() {
+	this.x = this.baseDims.x * Renderer.conversionRatio;
+	this.y = this.baseDims.y * Renderer.conversionRatio;
+	this.width = this.baseDims.width * Renderer.conversionRatio;
+	this.height = this.baseDims.height * Renderer.conversionRatio;
 	this.boundingBox = new AABB(this.x, this.y, this.x + this.width, this.y + this.height)
 }
 

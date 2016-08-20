@@ -8,16 +8,9 @@
 var Renderer = {};
 
 Renderer.initialize = function() {
-	this.screenWidth = window.innerWidth;
-	this.screenHeight = window.innerHeight;
-
 	this.canvas = document.createElement("canvas");
 	document.body.appendChild(this.canvas);
-
-	this.canvas.width = this.screenWidth;
-	this.canvas.height = this.screenHeight;
-
-	this.context = this.canvas.getContext("2d");
+	this.resize();
 
 	this.resourceCache = [];
 	this.loadingResources = [];
@@ -100,8 +93,19 @@ Renderer.loadResource = function(url) {
 }
 
 Renderer.resize = function() {
-	this.screenWidth = $(window).width();
-	this.screenHeight = $(window).height();
+	this.screenWidth = window.innerWidth;
+	this.screenHeight = window.innerHeight;
+
+	var startRatio = this.screenWidth/this.screenHeight;
+	if(startRatio > Config.masterRatio) {
+		this.conversionRatio = this.screenHeight / Config.masterHeight;
+		this.screenWidth = Config.masterWidth * this.conversionRatio;
+	} else if(startRatio < Config.masterRatio) {
+		this.conversionRatio = this.screenWidth / Config.masterWidth;
+		this.screenHeight = Config.masterHeight * this.conversionRatio;
+	} else {
+		this.conversionRatio = 1;
+	}
 
 	this.canvas.width = this.screenWidth;
 	this.canvas.height = this.screenHeight;
