@@ -18,6 +18,14 @@ Config.initialize = function() {
 	this.masterWidth = 1920;
 	this.masterHeight = 1080;
 	this.masterRatio = 16/9;
+
+	this.playerStartX = 200;
+	this.playerStartY = 680;
+	this.playerWidth = 150;
+	this.playerHeight = 220;
+
+	this.playerJumpArc = 150;
+	this.trainLevel = 900;
 }
 
 var GameState = 

@@ -11,6 +11,7 @@ Main.initialize = function() {
 	Config.initialize();
 	Renderer.initialize();
 	InputManager.initialize();
+	Physics.initialize();
 
 	this.gameLoop = setInterval(Main.run, 1000/Config.fps);
 	this.changeState (null, GameState.Game);
@@ -70,6 +71,7 @@ Main.quit = function() {
 
 Main.resize = function() {
 	Renderer.resize();
+	Physics.resize();
 
 	switch(this.gameState) {
 		case GameState.MainMenu:

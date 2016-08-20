@@ -10,6 +10,8 @@ var Renderer = {};
 Renderer.initialize = function() {
 	this.canvas = document.createElement("canvas");
 	document.body.appendChild(this.canvas);
+
+	this.conversionRatio = Config.masterRatio;
 	this.resize();
 
 	this.resourceCache = [];
@@ -42,6 +44,8 @@ Renderer.sprites = {
 	], "backgrounds": [
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"}
 	], "effects": [
+	], "general": [
+		{"name": "character_placeholder", "url": "static/images/general/character_placeholder.png"}
 	]
 };
 
@@ -95,6 +99,8 @@ Renderer.loadResource = function(url) {
 Renderer.resize = function() {
 	this.screenWidth = window.innerWidth;
 	this.screenHeight = window.innerHeight;
+
+	this.previousConversion = this.conversionRatio;
 
 	var startRatio = this.screenWidth/this.screenHeight;
 	if(startRatio > Config.masterRatio) {

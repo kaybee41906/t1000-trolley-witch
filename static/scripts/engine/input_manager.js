@@ -32,6 +32,7 @@ InputManager.onMouseDown = function(event) {
 
 InputManager.onMouseUp = function(event) {
 	this.mouseDown = false;
+	console.log("[%s], [%s]", this.mouse.x, this.mouse.y);
 }
 
 InputManager.onKeyDown = function(event) {
