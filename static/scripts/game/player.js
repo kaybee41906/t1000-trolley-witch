@@ -3,12 +3,12 @@
 var Player = {};
 
 Player.initialize = function() {
-	this.position = {'x': Config.playerStartX * Renderer.conversionRatio, 
-					 'y': Config.playerStartY * Renderer.conversionRatio};
+	this.position = {x: Config.playerStartX * Renderer.conversionRatio, 
+					 y: Config.playerStartY * Renderer.conversionRatio};
 	this.width = Config.playerWidth * Renderer.conversionRatio;
 	this.height = Config.playerHeight * Renderer.conversionRatio;
 
-	this.velocity = {'x': 0, 'y': 0};
+	this.velocity = {x: 0, y: 0};
 
 	this.sprite = Renderer.getSprite("character_placeholder");
 
@@ -16,9 +16,10 @@ Player.initialize = function() {
 	this.falling = false;
 	this.jumpRelease = true;
 
-	this.jumpForce = {'x': 0, 'y': -0.6};
+	this.jumpForce = {x: 0, y: -2};
 
 	this.jumpStartY = this.position.y;
+	this.maxVelocity = {x: 0, y:10};
 }
 
 Player.update = function() {
@@ -33,15 +34,16 @@ Player.update = function() {
 	if(this.jumping) {
 		if(!this.falling) {
 			if(this.position.y >= (this.jumpStartY - (Config.playerJumpArc * Renderer.conversionRatio))) {
-				Physics.applyForce(this.velocity, this.jumpForce);
+				this.velocity = Physics.applyForce(this.velocity, this.jumpForce, this.maxVelocity);
 			} else {
 				this.falling = true;
 			}
 		}
 		else {
-			Physics.applyGravity(this.velocity);
+			this.velocity = Physics.applyGravity(this.velocity, this.maxVelocity);
 			if((this.position.y + this.height) >= (Config.trainLevel * Renderer.conversionRatio)) {
 				this.velocity.y = 0;
+				this.position.y = (Config.trainLevel * Renderer.conversionRatio) - this.height;
 				this.falling = false;
 				this.jumping = false;
 			}

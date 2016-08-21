@@ -21,11 +21,14 @@ Config.initialize = function() {
 
 	this.playerStartX = 200;
 	this.playerStartY = 680;
-	this.playerWidth = 150;
+	this.playerWidth = 170;
 	this.playerHeight = 220;
 
-	this.playerJumpArc = 150;
+	this.playerJumpArc = 300;
 	this.trainLevel = 900;
+
+	this.trainWidth = 4000;
+	this.trainHeight = 300;
 }
 
 var GameState = 
