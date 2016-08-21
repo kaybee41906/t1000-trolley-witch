@@ -20,10 +20,18 @@ Player.initialize = function() {
 
 	this.jumpStartY = this.position.y;
 	this.maxVelocity = {x: 0, y:15};
+
+	this.boundingBox = new AABB(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height);
+	this.dead = false;
 }
 
 Player.update = function() {
-	if(InputManager.keyDown(InputManager.keys.UP_ARROW) && !this.jumping && this.jumpRelease) {
+	var car = this.checkTrainCarAABB();
+	if(!car) {
+		this.falling = true;
+	}
+
+	if(InputManager.keyDown(InputManager.keys.UP_ARROW) && (!this.jumping && !this.falling) && this.jumpRelease) {
 		this.jumping = true;
 		this.jumpRelease = false;
 	}
@@ -32,25 +40,40 @@ Player.update = function() {
 	}
 
 	if(this.jumping) {
-		if(!this.falling) {
-			if(this.position.y >= (this.jumpStartY - (Config.playerJumpArc * Renderer.conversionRatio))) {
-				this.velocity = Physics.applyForce(this.velocity, this.jumpForce, this.maxVelocity);
-			} else {
-				this.falling = true;
-			}
+		if(this.position.y >= (this.jumpStartY - (Config.playerJumpArc * Renderer.conversionRatio))) {
+			this.velocity = Physics.applyForce(this.velocity, this.jumpForce, this.maxVelocity);
+		} else {
+			this.falling = true;
+			this.jumping = false;
 		}
-		else {
-			this.velocity = Physics.applyGravity(this.velocity, this.maxVelocity);
-			if((this.position.y + this.height) >= (Config.trainLevel * Renderer.conversionRatio)) {
+	}
+
+	if(this.falling) {
+		this.velocity = Physics.applyGravity(this.velocity, this.maxVelocity);
+		if(car) {
+			if(!((this.position.y + this.height) > car.position.y + 10)) {
 				this.velocity.y = 0;
 				this.position.y = (Config.trainLevel * Renderer.conversionRatio) - this.height;
 				this.falling = false;
-				this.jumping = false;
+			}
+			else {
+				this.dead = true;
 			}
 		}
 	}
 
 	this.position.y += this.velocity.y;
+	this.boundingBox.update(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height);
+}
+
+Player.checkTrainCarAABB = function() {
+	var collided = false;
+	$.each(TrainCarManager.trainCars, function(key, car){
+		if(this.boundingBox.compareAABBAABB(car.boundingBox)) {
+			collided = car;
+		}
+	}.bind(Player));
+	return collided;
 }
 
 Player.resize = function() {

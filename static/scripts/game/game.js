@@ -18,6 +18,13 @@ Game.update = function() {
 }
 
 Game.render = function() {
+	if(Player.dead){
+		Renderer.context.fillStyle = "red";	
+		Renderer.context.fillRect(0, 0, Renderer.canvas.width, Renderer.canvas.height);	
+	} else {
+		Renderer.context.fillStyle = "#6495ed";	
+		Renderer.context.fillRect(0, 0, Renderer.canvas.width, Renderer.canvas.height);	
+	}
 	TrainCarManager.render();
 	Player.render();
 }

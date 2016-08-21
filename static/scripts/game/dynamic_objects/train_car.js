@@ -8,6 +8,7 @@ function TrainCar(sprite, position) {
 	this.velocity = {x:0, y:0};
 	this.trainAcceleration = {x:-0.3, y:0};
 	this.maxTrainVelocity = {x:15, y:0};
+	this.boundingBox = new AABB(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height)
 }
 
 TrainCar.prototype.resize = function() {
@@ -20,12 +21,15 @@ TrainCar.prototype.resize = function() {
 
 	this.width = Config.trainWidth * Renderer.conversionRatio;
 	this.height = Config.trainHeight * Renderer.conversionRatio;
+
+	this.boundingBox = new AABB(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height)
 }
 
 TrainCar.prototype.update = function() {
 	this.velocity = Physics.applyForce(this.velocity, this.trainAcceleration, this.maxTrainVelocity);
 
 	this.position.x += this.velocity.x;
+	this.boundingBox.update(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height);
 }
 
 TrainCar.prototype.render = function() {

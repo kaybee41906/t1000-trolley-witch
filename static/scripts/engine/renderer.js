@@ -140,8 +140,6 @@ Renderer.render = function() {
 	
 	switch(Main.gameState) {
 		case GameState.MainMenu:
-			this.context.fillStyle = "#6495ed";
-			this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);	
 			MainMenu.render();
 			break;
 		case GameState.CharacterSelect:

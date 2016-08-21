@@ -19,7 +19,7 @@ Config.initialize = function() {
 	this.masterHeight = 1080;
 	this.masterRatio = 16/9;
 
-	this.playerStartX = 200;
+	this.playerStartX = 640;
 	this.playerStartY = 680;
 	this.playerWidth = 170;
 	this.playerHeight = 220;
