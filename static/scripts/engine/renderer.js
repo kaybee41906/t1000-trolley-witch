@@ -54,6 +54,18 @@ Renderer.sprites = {
 		{"name": "albus_s5", "url": "static/images/sprites/albus/s5.png"},
 		{"name": "albus_s6", "url": "static/images/sprites/albus/s6.png"},
 	], "scorpius": [
+		{"name": "scorpius_1", "url": "static/images/sprites/scorpius/1.png"},
+		{"name": "scorpius_2", "url": "static/images/sprites/scorpius/2.png"},
+		{"name": "scorpius_3", "url": "static/images/sprites/scorpius/3.png"},
+		{"name": "scorpius_4", "url": "static/images/sprites/scorpius/4.png"},
+		{"name": "scorpius_5", "url": "static/images/sprites/scorpius/5.png"},
+		{"name": "scorpius_6", "url": "static/images/sprites/scorpius/6.png"},
+		{"name": "scorpius_s1", "url": "static/images/sprites/scorpius/s1.png"},
+		{"name": "scorpius_s2", "url": "static/images/sprites/scorpius/s2.png"},
+		{"name": "scorpius_s3", "url": "static/images/sprites/scorpius/s3.png"},
+		{"name": "scorpius_s4", "url": "static/images/sprites/scorpius/s4.png"},
+		{"name": "scorpius_s5", "url": "static/images/sprites/scorpius/s5.png"},
+		{"name": "scorpius_s6", "url": "static/images/sprites/scorpius/s6.png"},
 	], "backgrounds": [
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"}
 	], "effects": [

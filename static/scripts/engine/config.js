@@ -30,6 +30,8 @@ Config.initialize = function() {
 	this.trainWidth = 4000;
 	this.trainHeight = 300;
 	this.trainGap = 500;
+
+	this.animationTimer = 5;
 }
 
 var GameState = 

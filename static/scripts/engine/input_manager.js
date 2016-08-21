@@ -7,7 +7,11 @@ InputManager.initialize = function() {
 		'SPACE': 32,
 		'UP_ARROW': 38,
 		'DOWN_ARROW': 40,
-		'ESCAPE': 27
+		'ESCAPE': 27,
+		"ONE": 49,
+		"TWO": 50,
+		"THREE": 51,
+		"FOUR": 52
 	}
 
 	this.keysDown = {};

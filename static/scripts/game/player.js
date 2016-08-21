@@ -10,7 +10,44 @@ Player.initialize = function() {
 
 	this.velocity = {x: 0, y: 0};
 
-	this.sprite = Renderer.getSprite("albus_1");
+	//this.sprite = Renderer.getSprite("albus_1");
+	var scorpiusStdSprites = [];
+	scorpiusStdSprites.push(Renderer.getSprite("scorpius_1"));
+	scorpiusStdSprites.push(Renderer.getSprite("scorpius_2"));
+	scorpiusStdSprites.push(Renderer.getSprite("scorpius_3"));
+	scorpiusStdSprites.push(Renderer.getSprite("scorpius_4"));
+	scorpiusStdSprites.push(Renderer.getSprite("scorpius_5"));
+	scorpiusStdSprites.push(Renderer.getSprite("scorpius_6"));
+	this.scorpiusStdAnim = new Animation(scorpiusStdSprites, Config.animationTimer);
+
+	var scorpiusSpellSprites = [];
+	scorpiusSpellSprites.push(Renderer.getSprite("scorpius_s1"));
+	scorpiusSpellSprites.push(Renderer.getSprite("scorpius_s2"));
+	scorpiusSpellSprites.push(Renderer.getSprite("scorpius_s3"));
+	scorpiusSpellSprites.push(Renderer.getSprite("scorpius_s4"));
+	scorpiusSpellSprites.push(Renderer.getSprite("scorpius_s5"));
+	scorpiusSpellSprites.push(Renderer.getSprite("scorpius_s6"));
+	this.scorpiusSpellAnim = new Animation(scorpiusSpellSprites, Config.animationTimer);
+
+	var albusStdSprites = [];
+	albusStdSprites.push(Renderer.getSprite("albus_1"));
+	albusStdSprites.push(Renderer.getSprite("albus_2"));
+	albusStdSprites.push(Renderer.getSprite("albus_3"));
+	albusStdSprites.push(Renderer.getSprite("albus_4"));
+	albusStdSprites.push(Renderer.getSprite("albus_5"));
+	albusStdSprites.push(Renderer.getSprite("albus_6"));
+	this.albusStdAnim = new Animation(albusStdSprites, Config.animationTimer);
+
+	var albusSpellSprites = [];
+	albusSpellSprites.push(Renderer.getSprite("albus_s1"));
+	albusSpellSprites.push(Renderer.getSprite("albus_s2"));
+	albusSpellSprites.push(Renderer.getSprite("albus_s3"));
+	albusSpellSprites.push(Renderer.getSprite("albus_s4"));
+	albusSpellSprites.push(Renderer.getSprite("albus_s5"));
+	albusSpellSprites.push(Renderer.getSprite("albus_s6"));
+	this.albusSpellAnim = new Animation(albusSpellSprites, Config.animationTimer);
+
+	this.currentAnim = this.albusStdAnim;
 
 	this.jumping = false;
 	this.falling = false;
@@ -64,6 +101,25 @@ Player.update = function() {
 
 	this.position.y += this.velocity.y;
 	this.boundingBox.update(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height);
+
+	if(InputManager.keyDown(InputManager.keys.ONE)) {
+		this.albusStdAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
+		this.currentAnim = this.albusStdAnim;
+	}
+	if(InputManager.keyDown(InputManager.keys.TWO)) {
+		this.albusSpellAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
+		this.currentAnim = this.albusSpellAnim;
+	}
+	if(InputManager.keyDown(InputManager.keys.THREE)) {
+		this.scorpiusStdAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
+		this.currentAnim = this.scorpiusStdAnim;
+	}
+	if(InputManager.keyDown(InputManager.keys.FOUR)) {
+		this.scorpiusSpellAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
+		this.currentAnim = this.scorpiusSpellAnim;
+	}
+
+	this.currentAnim.update();
 }
 
 Player.checkTrainCarAABB = function() {
@@ -89,7 +145,8 @@ Player.resize = function() {
 }
 
 Player.render = function() {
-	var ctx = Renderer.context;
-	var img = Renderer.getResource(this.sprite);
-	ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
+	//var ctx = Renderer.context;
+	//var img = Renderer.getResource(this.sprite);
+	//ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
+	this.currentAnim.render(this.position.x, this.position.y, this.width, this.height);
 }
