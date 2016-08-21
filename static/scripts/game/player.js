@@ -47,11 +47,15 @@ Player.initialize = function() {
 	albusSpellSprites.push(Renderer.getSprite("albus_s6"));
 	this.albusSpellAnim = new Animation(albusSpellSprites, Config.animationTimer);
 
+	this.shieldSprite = Renderer.getSprite("shield");
+
 	this.currentAnim = this.albusStdAnim;
 
 	this.jumping = false;
 	this.falling = false;
 	this.jumpRelease = true;
+
+	this.blocking = false;
 
 	this.jumpForce = {x: 0, y: -5};
 
@@ -77,6 +81,7 @@ Player.update = function() {
 	}
 
 	if(this.jumping) {
+		this.blocking = false;
 		if(this.position.y >= (this.jumpStartY - (Config.playerJumpArc * Renderer.conversionRatio))) {
 			this.velocity = Physics.applyForce(this.velocity, this.jumpForce, this.maxVelocity);
 		} else {
@@ -86,6 +91,7 @@ Player.update = function() {
 	}
 
 	if(this.falling) {
+		this.blocking = false;
 		this.velocity = Physics.applyGravity(this.velocity, this.maxVelocity);
 		if(car) {
 			if(!((this.position.y + this.height) > car.position.y + 10)) {
@@ -96,6 +102,18 @@ Player.update = function() {
 			else {
 				this.dead = true;
 			}
+		}
+	}
+
+	if(!this.blocking) {
+		if(!this.jumping && !this.falling) {
+			if(InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
+				this.blocking = true;
+			}
+		}	
+	} else {
+		if(!InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
+			this.blocking = false;
 		}
 	}
 
@@ -145,8 +163,12 @@ Player.resize = function() {
 }
 
 Player.render = function() {
-	//var ctx = Renderer.context;
+	var ctx = Renderer.context;
 	//var img = Renderer.getResource(this.sprite);
 	//ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
 	this.currentAnim.render(this.position.x, this.position.y, this.width, this.height);
+	if(this.blocking) {
+		var img = Renderer.getResource(this.shieldSprite);
+		ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
+	}
 }

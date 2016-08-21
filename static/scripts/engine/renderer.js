@@ -77,10 +77,12 @@ Renderer.sprites = {
 	], "backgrounds": [
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"}
 	], "effects": [
+		{"name": "shield", "url": "static/images/effects/shield.png"}
 	], "game": [
 		{"name": "train_1", "url": "static/images/game/trains/train_1.png"}
 	], "general": [
-		{"name": "character_placeholder", "url": "static/images/general/character_placeholder.png"}
+		{"name": "character_placeholder", "url": "static/images/general/character_placeholder.png"},
+		{"name": "pumpkin_grenade", "url": "static/images/sprites/pumpkin.png"}
 	]
 };
 
