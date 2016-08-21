@@ -19,7 +19,7 @@ Lady.initialize = function() {
 	this.legAnim = new Animation(legSprites, Config.animationTimer);
 
 	this.currentAnim = this.legAnim;
-	this.torso = Renderer.getSprite("lady_torso_1");
+	this.torsoSprite = Renderer.getSprite("lady_torso_1");
 
 	this.boundingBox = new AABB(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height);
 }
@@ -44,5 +44,5 @@ Lady.render = function() {
 	this.currentAnim.render(this.position.x, this.position.y, this.width, this.height);
 	var ctx = Renderer.context;
 	var img = Renderer.getResource(this.torsoSprite);
-	//ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
+	ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
 }

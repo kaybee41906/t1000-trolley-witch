@@ -24,7 +24,7 @@ Config.initialize = function() {
 	this.playerWidth = 170;
 	this.playerHeight = 220;
 
-	this.ladyStartX = 100;
+	this.ladyStartX = 50;
 	this.ladyStartY = 660;
 	this.ladyWidth = 250;
 	this.ladyHeight = 240;
