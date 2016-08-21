@@ -10,16 +10,16 @@ Player.initialize = function() {
 
 	this.velocity = {x: 0, y: 0};
 
-	this.sprite = Renderer.getSprite("character_placeholder");
+	this.sprite = Renderer.getSprite("albus_1");
 
 	this.jumping = false;
 	this.falling = false;
 	this.jumpRelease = true;
 
-	this.jumpForce = {x: 0, y: -2};
+	this.jumpForce = {x: 0, y: -5};
 
 	this.jumpStartY = this.position.y;
-	this.maxVelocity = {x: 0, y:10};
+	this.maxVelocity = {x: 0, y:15};
 }
 
 Player.update = function() {

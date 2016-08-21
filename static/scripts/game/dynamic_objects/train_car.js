@@ -7,7 +7,7 @@ function TrainCar(sprite, position) {
 	this.position = position;
 	this.velocity = {x:0, y:0};
 	this.trainAcceleration = {x:-0.3, y:0};
-	this.maxTrainVelocity = {x:0.3, y:0};
+	this.maxTrainVelocity = {x:15, y:0};
 }
 
 TrainCar.prototype.resize = function() {
@@ -24,7 +24,6 @@ TrainCar.prototype.resize = function() {
 
 TrainCar.prototype.update = function() {
 	this.velocity = Physics.applyForce(this.velocity, this.trainAcceleration, this.maxTrainVelocity);
-	console.log(this.velocity)
 
 	this.position.x += this.velocity.x;
 }

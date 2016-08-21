@@ -3,15 +3,12 @@
 var Physics = {};
 
 Physics.initialize = function() {
-	this.maxVelocity = {};
-
 	this.resize();
 }
 
 Physics.resize = function() {
 	this.gravity = 4.5 * Renderer.conversionRatio;
-	this.maxGravVelocity = {x: 0, y: 5};
-	console.log(this.maxVelocity);
+	this.maxGravVelocity = {x: 0, y: 9.8};
 }
 
 Physics.applyForce = function(velocity, force, maxVelocity) {
@@ -31,11 +28,11 @@ Physics.applyGravity = function(velocity) {
 }
 
 Physics.clampVelocity = function(velocity, maxVelocity) {
-	velocity.x = velocity.x > this.maxVelocity.x ? this.maxVelocity.x : velocity.x;
-	velocity.x = velocity.x < -this.maxVelocity.x ? -this.maxVelocity.x : velocity.x;
+	velocity.x = velocity.x > maxVelocity.x ? maxVelocity.x : velocity.x;
+	velocity.x = velocity.x < -maxVelocity.x ? -maxVelocity.x : velocity.x;
 
-	velocity.y = velocity.y > this.maxVelocity.y ? this.maxVelocity.y : velocity.y;
-	velocity.y = velocity.y < -this.maxVelocity.y ? -this.maxVelocity.y : velocity.y;
+	velocity.y = velocity.y > maxVelocity.y ? maxVelocity.y : velocity.y;
+	velocity.y = velocity.y < -maxVelocity.y ? -maxVelocity.y : velocity.y;
 
 	return velocity;
 }

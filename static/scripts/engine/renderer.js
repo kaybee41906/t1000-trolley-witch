@@ -40,7 +40,20 @@ Renderer.sprites = {
 		{"name": "start_game_btn", "url": "static/images/buttons/start_game.png"},
 		{"name": "resume_game_btn", "url": "static/images/buttons/resume_game.png"},
 		{"name": "quit_game_btn", "url": "static/images/buttons/quit_game.png"}
-	], "spriteSheets": [
+	], "albus": [
+		{"name": "albus_1", "url": "static/images/sprites/albus/1.png"},
+		{"name": "albus_2", "url": "static/images/sprites/albus/2.png"},
+		{"name": "albus_3", "url": "static/images/sprites/albus/3.png"},
+		{"name": "albus_4", "url": "static/images/sprites/albus/4.png"},
+		{"name": "albus_5", "url": "static/images/sprites/albus/5.png"},
+		{"name": "albus_6", "url": "static/images/sprites/albus/6.png"},
+		{"name": "albus_s1", "url": "static/images/sprites/albus/s1.png"},
+		{"name": "albus_s2", "url": "static/images/sprites/albus/s2.png"},
+		{"name": "albus_s3", "url": "static/images/sprites/albus/s3.png"},
+		{"name": "albus_s4", "url": "static/images/sprites/albus/s4.png"},
+		{"name": "albus_s5", "url": "static/images/sprites/albus/s5.png"},
+		{"name": "albus_s6", "url": "static/images/sprites/albus/s6.png"},
+	], "scorpius": [
 	], "backgrounds": [
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"}
 	], "effects": [
