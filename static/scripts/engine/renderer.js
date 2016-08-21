@@ -66,6 +66,14 @@ Renderer.sprites = {
 		{"name": "scorpius_s4", "url": "static/images/sprites/scorpius/s4.png"},
 		{"name": "scorpius_s5", "url": "static/images/sprites/scorpius/s5.png"},
 		{"name": "scorpius_s6", "url": "static/images/sprites/scorpius/s6.png"},
+	], "trolly_witch": [
+		{"name": "lady_legs_1", "url": "static/images/sprites/lady/l1.png"},
+		{"name": "lady_legs_2", "url": "static/images/sprites/lady/l2.png"},
+		{"name": "lady_legs_3", "url": "static/images/sprites/lady/l3.png"},
+		{"name": "lady_legs_4", "url": "static/images/sprites/lady/l4.png"},
+		{"name": "lady_legs_5", "url": "static/images/sprites/lady/l5.png"},
+		{"name": "lady_legs_6", "url": "static/images/sprites/lady/l6.png"},
+		{"name": "lady_torso_1", "url": "static/images/sprites/lady/t1.png"},
 	], "backgrounds": [
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"}
 	], "effects": [

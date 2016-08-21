@@ -24,6 +24,11 @@ Config.initialize = function() {
 	this.playerWidth = 170;
 	this.playerHeight = 220;
 
+	this.ladyStartX = 100;
+	this.ladyStartY = 660;
+	this.ladyWidth = 250;
+	this.ladyHeight = 240;
+
 	this.playerJumpArc = 300;
 	this.trainLevel = 900;
 
