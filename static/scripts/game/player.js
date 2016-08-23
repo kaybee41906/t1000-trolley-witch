@@ -57,6 +57,14 @@ Player.initialize = function() {
 
 	this.blocking = false;
 
+	this.maxStamina = 100;
+	this.stamina = this.maxStamina;
+	this.overloadRecoveryPoint = 25;
+	this.staminaDrainRate = 2;
+	this.staminaRecoverRate = 0.5;
+	this.overloaded = false;
+	this.overloadedHolding = false;
+
 	this.jumpForce = {x: 0, y: -5};
 
 	this.jumpStartY = this.position.y;
@@ -106,15 +114,37 @@ Player.update = function() {
 	}
 
 	if(!this.blocking) {
-		if(!this.jumping && !this.falling) {
+		if(this.stamina < this.maxStamina) {
+			this.stamina += this.staminaRecoverRate;
+			if(this.overloaded && this.stamina >= this.overloadRecoveryPoint) {
+				this.overloaded = false;
+			}
+			if(this.stamina >= this.maxStamina) {
+				this.stamina = this.maxStamina;
+			}
+		}
+		if(!this.jumping && !this.falling && !this.stamina <= 0 && !this.overloaded && !this.overloadedHolding) {
 			if(InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
 				this.blocking = true;
 			}
 		}	
 	} else {
+		this.stamina -= this.staminaDrainRate;
+		if(this.stamina <= 0) {
+			this.stamina = 0;
+			this.overloaded = true;
+			this.blocking = false;
+			this.overloadedHolding = true;
+			console.log("drained");
+		}
 		if(!InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
 			this.blocking = false;
 		}
+	}
+
+	if(this.overloadedHolding && !InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
+		console.log("release");
+		this.overloadedHolding = false;
 	}
 
 	this.position.y += this.velocity.y;
@@ -164,8 +194,19 @@ Player.resize = function() {
 
 Player.render = function() {
 	var ctx = Renderer.context;
-	//var img = Renderer.getResource(this.sprite);
-	//ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
+	ctx.font = "25px Arial";
+	ctx.fillStyle = "white";
+	ctx.fillText("Shield Stamina", 100, 30);
+	ctx.fillStyle = "gray";
+	ctx.fillRect(20, 40, this.maxStamina * 2, 30);
+	if(this.overloaded || this.overloadedHolding) {
+		ctx.fillStyle="red";
+	} else {
+		ctx.fillStyle = "blue";
+	}
+	ctx.fillRect(20, 40, this.stamina * 2, 30);
+
+	ctx = Renderer.context;
 	this.currentAnim.render(this.position.x, this.position.y, this.width, this.height);
 	if(this.blocking) {
 		var img = Renderer.getResource(this.shieldSprite);
