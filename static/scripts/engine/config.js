@@ -37,6 +37,9 @@ Config.initialize = function() {
 	this.trainGap = 500;
 
 	this.animationTimer = 5;
+
+	this.grenadeHeight = 50;
+	this.grenadeWidth = 50;
 }
 
 var GameState = 

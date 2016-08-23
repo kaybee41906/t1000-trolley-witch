@@ -15,9 +15,16 @@ Main.initialize = function() {
 
 	this.gameLoop = setInterval(Main.run, 1000/Config.fps);
 	this.changeState (null, GameState.Game);
+
+	this.gameTime = (new Date).getTime();
+	this.deltaTime = 0;
 }
 
 Main.update = function() {
+	var time = (new Date).getTime();
+	this.deltaTime = time - this.gameTime;
+	this.gameTime = time;
+
 	switch(this.gameState) {
 		case GameState.MainMenu:
 			MainMenu.update();

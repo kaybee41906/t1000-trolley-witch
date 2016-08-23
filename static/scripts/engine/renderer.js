@@ -82,7 +82,7 @@ Renderer.sprites = {
 		{"name": "train_1", "url": "static/images/game/trains/train_1.png"}
 	], "general": [
 		{"name": "character_placeholder", "url": "static/images/general/character_placeholder.png"},
-		{"name": "pumpkin_grenade", "url": "static/images/sprites/pumpkin.png"}
+		{"name": "pumpkin", "url": "static/images/sprites/pumpkin.png"}
 	]
 };
 

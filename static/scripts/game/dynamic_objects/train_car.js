@@ -22,7 +22,7 @@ TrainCar.prototype.resize = function() {
 	this.width = Config.trainWidth * Renderer.conversionRatio;
 	this.height = Config.trainHeight * Renderer.conversionRatio;
 
-	this.boundingBox = new AABB(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height)
+	this.boundingBox.update(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height)
 }
 
 TrainCar.prototype.update = function() {
@@ -35,5 +35,5 @@ TrainCar.prototype.update = function() {
 TrainCar.prototype.render = function() {
 	var ctx = Renderer.context;
 	var img = Renderer.getResource(this.sprite);
-	ctx.drawImage(img, this.position.x, this.position.y, this.width, 1000);
+	ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
 }
