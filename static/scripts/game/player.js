@@ -51,9 +51,7 @@ Player.initialize = function() {
 
 	this.currentAnim = this.albusStdAnim;
 
-	this.jumping = false;
-	this.falling = false;
-	this.jumpRelease = true;
+	
 
 	this.blocking = false;
 
@@ -65,6 +63,9 @@ Player.initialize = function() {
 	this.overloaded = false;
 	this.overloadedHolding = false;
 
+	this.jumping = false;
+	this.falling = false;
+	this.jumpRelease = true;
 	this.jumpForce = {x: 0, y: -5};
 
 	this.jumpStartY = this.position.y;
