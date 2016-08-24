@@ -51,8 +51,6 @@ Player.initialize = function() {
 
 	this.currentAnim = this.albusStdAnim;
 
-	
-
 	this.blocking = false;
 
 	this.maxStamina = 100;

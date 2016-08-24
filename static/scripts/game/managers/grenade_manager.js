@@ -15,8 +15,8 @@ GrenadeManager.initialize = function() {
 }
 
 GrenadeManager.addGrenade = function() {
-	var angle = Math.floor(Math.random() * (this.grenadeAngle.max - this.grenadeAngle.min + 1)) + this.grenadeAngle.min;
-	var force = Math.floor(Math.random() * (this.grenadeForce.max - this.grenadeForce.min + 1)) + this.grenadeForce.min;
+	var angle = randomRange(this.grenadeAngle.min, this.grenadeAngle.max);
+	var force = randomRange(this.grenadeForce.min, this.grenadeForce.max);
 
 	var position = { x: this.spawn.x, y: this.spawn.y };
 	var grenade = new Grenade(position, angle, force);
@@ -34,7 +34,7 @@ GrenadeManager.update = function() {
 		this.currentGrenadeTimer--;
 		if(this.currentGrenadeTimer <= 0) {
 			this.addGrenade();
-			this.currentGrenadeTimer = Math.floor(Math.random() * (this.grenadeFrequency.max - this.grenadeFrequency.min + 1)) + this.grenadeFrequency.min;
+			this.currentGrenadeTimer = randomRange(this.grenadeFrequency.min, this.grenadeFrequency.max);
 		}
 	}
 

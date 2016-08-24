@@ -5,9 +5,8 @@ function Grenade(position, angle, force) {
 	this.height = Config.grenadeHeight * Renderer.conversionRatio;
 
 	this.sprite = Renderer.getSprite("pumpkin");
-	this.explosionSprite = Renderer.
 	this.position = position;
-	this.angle = angle * Math.PI/180;
+	this.angle = degToRad(angle);
 	this.force = force;
 
 	this.time = Main.gameTime;
@@ -15,7 +14,15 @@ function Grenade(position, angle, force) {
 	this.velocity = { x: this.force * Math.sin(this.angle), y: this.force * Math.cos(this.angle) };
 
 	this.maxVelocity = { x: 500, y: 500 };
-	this.boundingBox = new AABB(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height)
+	this.boundingBox = new AABB(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height);
+
+	//explosion variables
+	var sizeRange = {min:10, max:30};
+	var forceRange = {min:10, max:15};
+	var density = 2;
+	var duration = 60;
+	var frequency = 1;
+	this.explosionParticleSystem = new ParticleSystem(sizeRange, density, duration, frequency, forceRange, Renderer.getSprite("smoke_1"));
 }
 
 Grenade.prototype.resize = function(){
@@ -33,10 +40,6 @@ Grenade.prototype.resize = function(){
 }
 
 Grenade.prototype.inBounds = function() {
-	//if(this.position.x + this.width < 0 ||
-	//	this.position.y + this.height < 0 ||
-	//	this.position.x > Renderer.screenWidth ||
-	//	this.position.y > Renderer.screenHeight )
 	if(this.position.y > Renderer.screenHeight || 
 		this.position.x < 0)
 		return false;
@@ -44,17 +47,7 @@ Grenade.prototype.inBounds = function() {
 }
 
 Grenade.prototype.update = function() {
-	//console.log(Main.gameTim);
-	var dt = Main.gameTime - this.time;
-	//this.velocity = Physics.applyTrajectory(this.position, this.force, dt, this.angle, this.maxVelocity);
-	//this.velocity.x = this.velocity.x * Math.sin(this.angle);
-	//this.velocity.y = this.velocity.y * Math.cos(this.angle);
-
 	this.velocity = Physics.applyForce(this.velocity, {x:0, y:0.1}, this.maxVelocity)
-	//this.velocity = Physics.applyGravity(this.velocity);
-
-	//this.velocity = Physics.applyForce(this.velocity, this.force, { x: this.maxVelocity.x * 10, y: this.maxVelocity.y * 10});
-	//this.velocity = Physics.applyGravity(this.velocity, this.maxVelocity);
 
 	this.position.x += this.velocity.x;
 	this.position.y += this.velocity.y;
