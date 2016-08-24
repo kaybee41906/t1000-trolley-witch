@@ -77,7 +77,14 @@ Renderer.sprites = {
 	], "backgrounds": [
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"}
 	], "effects": [
-		{"name": "shield", "url": "static/images/effects/shield.png"}
+		{"name": "shield", "url": "static/images/effects/shield.png"},
+		{"name": "smoke_1", "url": "static/images/effects/smoke_1.png"},
+		{"name": "smoke_2", "url": "static/images/effects/smoke_2.png"},
+		{"name": "smoke_3", "url": "static/images/effects/smoke_3.png"},
+		{"name": "smoke_4", "url": "static/images/effects/smoke_4.png"},
+		{"name": "smoke_5", "url": "static/images/effects/smoke_5.png"},
+		{"name": "smoke_6", "url": "static/images/effects/smoke_6.png"},
+		{"name": "smoke_7", "url": "static/images/effects/smoke_7.png"},
 	], "game": [
 		{"name": "train_1", "url": "static/images/game/trains/train_1.png"}
 	], "general": [

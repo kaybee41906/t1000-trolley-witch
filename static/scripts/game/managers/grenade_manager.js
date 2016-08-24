@@ -43,7 +43,8 @@ GrenadeManager.update = function() {
 	});
 
 	for(var i = 0; i < this.grenades.length; i++) {
-		if(!this.grenades[i].inBounds()) {
+		if(this.grenades[i].explosionDone) {
+			this.grenades[i].explosionParticleSystem.destroy();
 			this.grenades.splice(i, 1);
 			i--;
 		}

@@ -7,3 +7,7 @@ function randomRange(min, max) {
 function degToRad(deg) {
 	return deg * Math.PI/180;
 }
+
+function addVector(v1, v2) {
+	return {x: v1.x + v2.x, y: v1.y + v2.y};
+}

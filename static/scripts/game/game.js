@@ -33,7 +33,8 @@ Game.render = function() {
 		Renderer.context.fillRect(0, 0, Renderer.canvas.width, Renderer.canvas.height);	
 	}
 	TrainCarManager.render();
-	GrenadeManager.render();
+	
 	Lady.render();
 	Player.render();
+	GrenadeManager.render();
 }
