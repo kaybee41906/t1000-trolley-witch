@@ -5,6 +5,7 @@ function Grenade(position, angle, force) {
 	this.height = Config.grenadeHeight * Renderer.conversionRatio;
 
 	this.sprite = Renderer.getSprite("pumpkin");
+	this.explosionSprite = Renderer.
 	this.position = position;
 	this.angle = angle * Math.PI/180;
 	this.force = force;
@@ -36,7 +37,8 @@ Grenade.prototype.inBounds = function() {
 	//	this.position.y + this.height < 0 ||
 	//	this.position.x > Renderer.screenWidth ||
 	//	this.position.y > Renderer.screenHeight )
-	if(this.position.y > Renderer.screenHeight)
+	if(this.position.y > Renderer.screenHeight || 
+		this.position.x < 0)
 		return false;
 	return true;
 }
@@ -58,6 +60,10 @@ Grenade.prototype.update = function() {
 	this.position.y += this.velocity.y;
 
 	this.boundingBox.update(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height)
+}
+
+Grenade.prototype.explode = function() {
+
 }
 
 Grenade.prototype.render = function() {

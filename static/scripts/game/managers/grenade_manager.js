@@ -5,7 +5,7 @@ var GrenadeManager = {};
 GrenadeManager.initialize = function() {
 	this.grenadeFrequency = { min: 100, max: 200 };
 	this.grenadeAngle = { min: 130, max: 170 };
-	this.grenadeForce = { min: 10, max: 20 };
+	this.grenadeForce = { min: 10, max: 15 };
 
 	this.currentGrenadeTimer = Math.floor(Math.random() * (this.grenadeFrequency.max - this.grenadeFrequency.min + 1)) + this.grenadeFrequency.min;
 

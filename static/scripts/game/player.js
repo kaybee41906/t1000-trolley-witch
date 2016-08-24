@@ -57,9 +57,9 @@ Player.initialize = function() {
 
 	this.maxStamina = 100;
 	this.stamina = this.maxStamina;
-	this.overloadRecoveryPoint = 25;
+	this.overloadRecoveryPoint = 50;
 	this.staminaDrainRate = 2;
-	this.staminaRecoverRate = 0.5;
+	this.staminaRecoverRate = 1;
 	this.overloaded = false;
 	this.overloadedHolding = false;
 
@@ -90,7 +90,7 @@ Player.update = function() {
 	}
 
 	if(this.jumping) {
-		this.blocking = false;
+		//this.blocking = false;
 		if(this.position.y >= (this.jumpStartY - (Config.playerJumpArc * Renderer.conversionRatio))) {
 			this.velocity = Physics.applyForce(this.velocity, this.jumpForce, this.maxVelocity);
 		} else {
@@ -100,7 +100,7 @@ Player.update = function() {
 	}
 
 	if(this.falling) {
-		this.blocking = false;
+		//this.blocking = false;
 		this.velocity = Physics.applyGravity(this.velocity, this.maxVelocity);
 		if(car) {
 			if(!((this.position.y + this.height) > car.position.y + 10)) {
@@ -124,7 +124,8 @@ Player.update = function() {
 				this.stamina = this.maxStamina;
 			}
 		}
-		if(!this.jumping && !this.falling && !this.stamina <= 0 && !this.overloaded && !this.overloadedHolding) {
+		//if(!this.jumping && !this.falling && !this.stamina <= 0 && !this.overloaded && !this.overloadedHolding) {
+		if(!this.stamina <= 0 && !this.overloaded && !this.overloadedHolding) {
 			if(InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
 				this.blocking = true;
 			}
