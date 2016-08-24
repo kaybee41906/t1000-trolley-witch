@@ -19,7 +19,7 @@ Config.initialize = function() {
 	this.masterHeight = 1080;
 	this.masterRatio = 16/9;
 
-	this.playerStartX = 640;
+	this.playerStartX = 875;
 	this.playerStartY = 680;
 	this.playerWidth = 170;
 	this.playerHeight = 220;
@@ -38,8 +38,8 @@ Config.initialize = function() {
 
 	this.animationTimer = 5;
 
-	this.grenadeHeight = 50;
-	this.grenadeWidth = 50;
+	this.grenadeHeight = 40;
+	this.grenadeWidth = 40;
 }
 
 var GameState = 

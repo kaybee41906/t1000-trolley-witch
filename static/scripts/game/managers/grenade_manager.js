@@ -4,8 +4,8 @@ var GrenadeManager = {};
 
 GrenadeManager.initialize = function() {
 	this.grenadeFrequency = { min: 100, max: 200 };
-	this.grenadeAngle = { min: 10, max: 70 };
-	this.grenadeForce = { min: 0.5, max: 0.7 };
+	this.grenadeAngle = { min: 130, max: 170 };
+	this.grenadeForce = { min: 10, max: 20 };
 
 	this.currentGrenadeTimer = Math.floor(Math.random() * (this.grenadeFrequency.max - this.grenadeFrequency.min + 1)) + this.grenadeFrequency.min;
 
@@ -16,14 +16,11 @@ GrenadeManager.initialize = function() {
 
 GrenadeManager.addGrenade = function() {
 	var angle = Math.floor(Math.random() * (this.grenadeAngle.max - this.grenadeAngle.min + 1)) + this.grenadeAngle.min;
-	var force = { x: Math.floor(Math.random() * (this.grenadeForce.max - this.grenadeForce.min + 1)) + this.grenadeForce.min,
-				  y: Math.floor(Math.random() * (this.grenadeForce.max - this.grenadeForce.min + 1)) + this.grenadeForce.min };
-	force.y = -force.y;
+	var force = Math.floor(Math.random() * (this.grenadeForce.max - this.grenadeForce.min + 1)) + this.grenadeForce.min;
 
 	var position = { x: this.spawn.x, y: this.spawn.y };
 	var grenade = new Grenade(position, angle, force);
 	this.grenades.push(grenade);
-	console.log(this.grenades);
 }
 
 GrenadeManager.resize = function() {
@@ -36,7 +33,6 @@ GrenadeManager.update = function() {
 	if(this.currentGrenadeTimer >= 0) {
 		this.currentGrenadeTimer--;
 		if(this.currentGrenadeTimer <= 0) {
-			console.log("Spawn grenade");
 			this.addGrenade();
 			this.currentGrenadeTimer = Math.floor(Math.random() * (this.grenadeFrequency.max - this.grenadeFrequency.min + 1)) + this.grenadeFrequency.min;
 		}
