@@ -3,7 +3,7 @@
 function AudioClip(clip, type, name) {
 	this.source = document.createElement("audio");
 	this.source.src = clip;
-	this.source.src = type;
+	this.source.type = type;
 	this.name = name;
 }
 

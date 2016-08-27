@@ -10,7 +10,10 @@ AudioManager.initialize = function() {
 	document.body.appendChild(this.backgroundMusic);
 
 	this.clips = [];
-
+	this.clips.push(new AudioClip("static/audio/effects/button_press.mp3", "mpeg", "button_press"));
+	this.clips.push(new AudioClip("static/audio/effects/foot_fall.mp3", "mpeg", "foot_fall"));
+	this.clips.push(new AudioClip("static/audio/effects/land.mp3", "mpeg", "land"));
+	this.clips.push(new AudioClip("static/audio/effects/jump.mp3", "mpeg", "jump"));
 }
 
 AudioManager.getClip = function(name) {

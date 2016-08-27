@@ -41,6 +41,7 @@ Button.prototype.update = function() {
 		}
 		if(this.pushed && !InputManager.mouseDown) {
 			this.callback();
+			AudioManager.playOneOff("button_press");
 		}
 	}
 	else {

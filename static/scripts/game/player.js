@@ -50,12 +50,12 @@ Player.initialize = function() {
 	this.shieldSprite = Renderer.getSprite("shield");
 
 	this.currentAnim = this.albusStdAnim;
-	//this.character = Main.selectedCharacter;
-	//if(Main.selectedCharacter) {
-	//	this.currentAnim = this.albusStdAmin;
-	//} else {
-	//	this.currentAnim = this.scorpiusStdAnim;
-	//}
+	console.log(Main.selectedCharacter);
+	if(Main.selectedCharacter) {
+		this.currentAnim = this.albusStdAnim;
+	} else {
+		this.currentAnim = this.scorpiusStdAnim;
+	}
 	console.log(this.currentAnim);
 	console.log(Main.selectedCharacter);
 
@@ -131,6 +131,10 @@ Player.update = function() {
 				this.die();
 			}
 		}
+	}
+
+	if(!this.jumping && !this.falling) {
+		AudioManager.playOneOff("foot_fall");
 	}
 
 	if(!this.blocking) {
