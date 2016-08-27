@@ -11,3 +11,7 @@ function degToRad(deg) {
 function addVector(v1, v2) {
 	return {x: v1.x + v2.x, y: v1.y + v2.y};
 }
+
+function zeroVector() {
+	return {x: 0, y: 0};
+}

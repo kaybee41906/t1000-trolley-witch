@@ -75,7 +75,8 @@ Renderer.sprites = {
 		{"name": "lady_legs_6", "url": "static/images/sprites/lady/l6.png"},
 		{"name": "lady_torso_1", "url": "static/images/sprites/lady/t1.png"},
 	], "backgrounds": [
-		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"}
+		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"},
+		{"name": "test_bg_1", "url": "static/images/backgrounds/test_bg_1.jpg"}
 	], "effects": [
 		{"name": "shield", "url": "static/images/effects/shield.png"},
 		{"name": "smoke_1", "url": "static/images/effects/smoke_1.png"},
@@ -84,11 +85,10 @@ Renderer.sprites = {
 		{"name": "smoke_4", "url": "static/images/effects/smoke_4.png"},
 		{"name": "smoke_5", "url": "static/images/effects/smoke_5.png"},
 		{"name": "smoke_6", "url": "static/images/effects/smoke_6.png"},
-		{"name": "smoke_7", "url": "static/images/effects/smoke_7.png"},
+		{"name": "smoke_7", "url": "static/images/effects/smoke_7.png"},	
 	], "game": [
 		{"name": "train_1", "url": "static/images/game/trains/train_1.png"}
 	], "general": [
-		{"name": "character_placeholder", "url": "static/images/general/character_placeholder.png"},
 		{"name": "pumpkin", "url": "static/images/sprites/pumpkin.png"}
 	]
 };
@@ -127,6 +127,7 @@ Renderer.loadResource = function(url) {
 			var percentComplete = (Object.keys(Renderer.loadingResources).length / Object.keys(Renderer.resourceCache).length) * 100;
 
 			if(percentComplete >= 100) { 
+				console.log("Resources Loaded");
 				Renderer.resourceCache = [];
 				Renderer.loadedResources = Renderer.loadingResources;
 				Renderer.loadingResources = [];
@@ -166,6 +167,11 @@ Renderer.resize = function() {
 
 Renderer.render = function() {
 	Renderer.clear();
+	var percentageLoaded = (Object.keys(Renderer.loadingResources).length / Object.keys(Renderer.resourceCache).length) * 100;
+	if(percentageLoaded < 100) {
+		// TODO: Render loading screen
+		console.log("loading");
+	} else {
 	
 	switch(Main.gameState) {
 		case GameState.MainMenu:
@@ -183,6 +189,7 @@ Renderer.render = function() {
 			break;
 		case GameState.Win:
 			break;
+	}
 	}
 }
 

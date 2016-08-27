@@ -5,6 +5,7 @@ var Game = {};
 Game.initialize = function() {
 	TrainCarManager.initialize();
 	
+	ParallaxManager.initialize();
 	Lady.initialize();
 	GrenadeManager.initialize();
 	Player.initialize();
@@ -18,6 +19,7 @@ Game.resize = function() {
 }
 
 Game.update = function() {
+	ParallaxManager.update();
 	TrainCarManager.update();
 	GrenadeManager.update();
 	Lady.update();
@@ -29,9 +31,11 @@ Game.render = function() {
 		Renderer.context.fillStyle = "red";	
 		Renderer.context.fillRect(0, 0, Renderer.canvas.width, Renderer.canvas.height);	
 	} else {
-		Renderer.context.fillStyle = "#6495ed";	
-		Renderer.context.fillRect(0, 0, Renderer.canvas.width, Renderer.canvas.height);	
+		//Renderer.context.fillStyle = "#6495ed";	
+		//Renderer.context.fillRect(0, 0, Renderer.canvas.width, Renderer.canvas.height);	
+		ParallaxManager.render();
 	}
+	//ParallaxManager.render();
 	TrainCarManager.render();
 	
 	Lady.render();
