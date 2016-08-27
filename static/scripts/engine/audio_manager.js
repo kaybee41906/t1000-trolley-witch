@@ -10,26 +10,25 @@ AudioManager.initialize = function() {
 	document.body.appendChild(this.backgroundMusic);
 
 	this.clips = [];
-	
+
 }
 
 AudioManager.getClip = function(name) {
 	var returnVal = null;
 
-	for (var key in this.clips) {
-		if(this.clips.hasOwnProperty(key)) {
-			$.each(this.clips[key], function(key, val) {
-				if(val.name == name) {
-					returnVal = val;
-				}
-			});
-		}
-	}
+	$.each(this.clips, function(key, clip){
+		if(clip.name == name)
+			returnVal = clip;
+	});
+
 	return returnVal;
 }
 
 AudioManager.playOneOff = function(clip) {
-	
+	var audioClip = this.getClip(clip)
+	if(audioClip != null) {
+		audioClip.play();
+	}
 }
 
 AudioManager.update = function() {

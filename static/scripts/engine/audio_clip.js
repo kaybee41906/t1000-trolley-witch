@@ -1,9 +1,10 @@
 //audio_clip.js
 
-function AudioClip(clip, type) {
+function AudioClip(clip, type, name) {
 	this.source = document.createElement("audio");
 	this.source.src = clip;
 	this.source.src = type;
+	this.name = name;
 }
 
 AudioClip.prototype.play = function() {

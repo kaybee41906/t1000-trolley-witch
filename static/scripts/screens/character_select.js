@@ -6,10 +6,16 @@ CharacterSelect.initialize = function() {
 	this.buttons = [];
 	this.background = Renderer.getSprite("character_select_bg");
 
-	var albusBtn = new Button(Renderer.canvas.width/2 - 150, 250, 300, 600, Renderer.getSprite("albus_select"), CharacterSelect.chooseAlbus)
-	var scorpiusBtn = new Button(Renderer.canvas.width - Renderer.canvas.width/4, 250, 300, 600, Renderer.getSprite("scorpius_select"), CharacterSelect.chooseScorpius)
+	this.albusStd = Renderer.getSprite("albus_select");
+	this.albusOutline = Renderer.getSprite("albus_selected");
+	this.scorpiusStd = Renderer.getSprite("scorpius_select");
+	this.scorpiusOutline = Renderer.getSprite("scorpius_selected");
+
+	var albusBtn = new Button(Renderer.canvas.width/4, 250, 500, 500, this.albusStd, CharacterSelect.chooseAlbus)
+	var scorpiusBtn = new Button(Renderer.canvas.width - 500, 250, 500, 500, this.scorpiusStd, CharacterSelect.chooseScorpius)
 	this.buttons.push(albusBtn);
 	this.buttons.push(scorpiusBtn);
+
 
 	var startBtn = new Button(Renderer.screenWidth, Renderer.screenHeight, 150, 50, Renderer.getSprite("start_game_btn"), CharacterSelect.startGame);
 	this.buttons.push(startBtn);
@@ -35,6 +41,7 @@ CharacterSelect.render = function() {
 	ctx.fillText("Choose your character", Renderer.canvas.width/2, 100);
 
 	// Render selection outline
+	/*
 	if(this.albusSelected) {
 		var ctx = Renderer.context;
 		ctx.fillStyle = "white";
@@ -44,7 +51,7 @@ CharacterSelect.render = function() {
 		var ctx = Renderer.context;
 		ctx.fillStyle = "white";
 		ctx.fillRect(this.buttons[1].x -5, this.buttons[1].y - 5, this.buttons[1].width + 10, this.buttons[1].height + 10);
-	}
+	}*/
 
 	$.each(this.buttons, function(key, button) {
 		button.render();
@@ -64,9 +71,14 @@ CharacterSelect.startGame = function() {
 CharacterSelect.chooseAlbus = function() {
 	CharacterSelect.albusSelected = true;
 	CharacterSelect.scorpiusSelected = false;
+	CharacterSelect.buttons[0].sprite = CharacterSelect.albusOutline;
+	CharacterSelect.buttons[1].sprite = CharacterSelect.scorpiusStd;
+	console.log(CharacterSelect.buttons[0].sprite);
 }
 
 CharacterSelect.chooseScorpius = function() {
 	CharacterSelect.albusSelected = false;
 	CharacterSelect.scorpiusSelected = true;
+	CharacterSelect.buttons[0].sprite = CharacterSelect.albusStd;
+	CharacterSelect.buttons[1].sprite = CharacterSelect.scorpiusOutline;
 }

@@ -39,7 +39,11 @@ Renderer.sprites = {
 		{"name": "character_select_btn", "url": "static/images/buttons/character_select.png"},
 		{"name": "start_game_btn", "url": "static/images/buttons/start_game.png"},
 		{"name": "resume_game_btn", "url": "static/images/buttons/resume_game.png"},
-		{"name": "quit_game_btn", "url": "static/images/buttons/quit_game.png"}
+		{"name": "quit_game_btn", "url": "static/images/buttons/quit_game.png"},
+		{"name": "albus_select", "url": "static/images/buttons/albus_unselect.png"},
+		{"name": "albus_selected", "url": "static/images/buttons/albus_select.png"},
+		{"name": "scorpius_select", "url": "static/images/buttons/scorpius_unselect.png"},
+		{"name": "scorpius_selected", "url": "static/images/buttons/scorpius_select.png"},
 	], "albus": [
 		{"name": "albus_1", "url": "static/images/sprites/albus/1.png"},
 		{"name": "albus_2", "url": "static/images/sprites/albus/2.png"},
