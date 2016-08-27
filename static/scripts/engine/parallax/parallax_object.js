@@ -13,7 +13,7 @@ function ParallaxObject(sprite, position, width, height, speed) {
 ParallaxObject.prototype.update = function() {
 	this.position = addVector(this.position, this.velocity);
 
-	if(this.position.x + width <= 0) {
+	if(this.position.x + this.width <= 0) {
 		this.dead = true;
 	}
 }

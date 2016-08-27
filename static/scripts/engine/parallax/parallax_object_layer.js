@@ -1,11 +1,12 @@
 //parallax_object_layer.js
 
-function ParallaxObjectLayer(sprites, frequencyRange, widthRange, heightRange, speed) {
+function ParallaxObjectLayer(sprites, frequencyRange, widthRange, heightRange, speed, y) {
 	this.sprites = sprites;
 	this.frequencyRange = frequencyRange;
 	this.widthRange = widthRange;
 	this.heightRange = heightRange;
 	this.speed = speed;
+	this.y = y;
 
 	this.currentFrequency = randomRange(this.frequencyRange.min, this.frequencyRange.max);
 	this.frequencyTimer = this.currentFrequency;
@@ -16,16 +17,16 @@ function ParallaxObjectLayer(sprites, frequencyRange, widthRange, heightRange, s
 }
 
 ParallaxObjectLayer.prototype.createObject = function() {
-	var spriteIndex = randomRange(0, this.sprites.length);
+	var spriteIndex = randomRange(0, this.sprites.length-1);
 	var sprite = this.sprites[spriteIndex];
 
 	var width = randomRange(this.widthRange.min, this.widthRange.max);
 	var height = randomRange(this.heightRange.min, this.heightRange.max);
 
-	var position = {x: Renderer.screenWidth + 10, y: Renderer.screenHeight - height };
+	var position = {x: -width, y: this.y - height };
 
 	var obj = new ParallaxObject(sprite, position, width, height, this.speed);
-	this.object.push(obj);
+	this.objects.push(obj);
 }
 
 ParallaxObjectLayer.prototype.update = function() {

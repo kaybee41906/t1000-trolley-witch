@@ -1,12 +1,11 @@
 //parallax_layer.js
 
-function ParallaxLayer(sprite, speed, startPosition, width, height) {
+function ParallaxLayer(sprite, speed, width, height) {
 	this.sprite = sprite;
-	this.velocity = { x: -speed, y: 0 };
-	this.position = {x: startPosition.x, y: startPosition.y};
-	this.secondPosition = startPosition;
-	this.secondPosition.x = startPosition.x + width;
-	
+	this.velocity = { x: speed, y: 0 };
+	this.position = {x: -width + Renderer.screenWidth, y: 0};
+	this.secondPosition = {x: (-width * 2) + Renderer.screenWidth, y: 0};
+
 	this.width = width;
 	this.height = height;
 }
@@ -15,12 +14,12 @@ ParallaxLayer.prototype.update = function() {
 	this.position = addVector(this.position, this.velocity);
 	this.secondPosition = addVector(this.secondPosition, this.velocity);
 
-	if(this.position.x < -this.width) {
-		this.position.x  = this.secondPosition.x + this.width;
+	if(this.position.x > Renderer.screenWidth) {
+		this.position.x  = this.secondPosition.x - this.width;
 	}
 
-	if(this.secondPosition.x < -this.width) {
-		this.secondPosition.x = this.position.x + this.width;
+	if(this.secondPosition.x > Renderer.screenWidth) {
+		this.secondPosition.x = this.position.x - this.width;
 	}
 }
 

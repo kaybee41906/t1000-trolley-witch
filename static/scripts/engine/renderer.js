@@ -76,7 +76,8 @@ Renderer.sprites = {
 		{"name": "lady_torso_1", "url": "static/images/sprites/lady/t1.png"},
 	], "backgrounds": [
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"},
-		{"name": "test_bg_1", "url": "static/images/backgrounds/test_bg_1.jpg"}
+		{"name": "scroll_bg_1", "url": "static/images/backgrounds/scroll_bg_1.png"},
+		{"name": "tree_1", "url": "static/images/backgrounds/tree_1.png"}
 	], "effects": [
 		{"name": "shield", "url": "static/images/effects/shield.png"},
 		{"name": "smoke_1", "url": "static/images/effects/smoke_1.png"},
