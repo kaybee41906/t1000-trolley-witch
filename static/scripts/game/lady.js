@@ -69,6 +69,7 @@ Lady.update = function() {
 				this.velocity.y = 0;
 				this.position.y = (Config.trainLevel * Renderer.conversionRatio) - this.height;
 				this.falling = false;
+				AudioManager.playOneOff("land");
 			}
 			else {
 				this.dead = true;
@@ -89,6 +90,7 @@ Lady.nextTrain = function() {
 	$.each(TrainCarManager.trainCars, function(key, car){
 		if(this.position.x + this.width >= car.position.x + car.width) {
 			this.jumping = true;
+			AudioManager.playOneOff("jump");
 		}
 	}.bind(Lady));
 	return collided;

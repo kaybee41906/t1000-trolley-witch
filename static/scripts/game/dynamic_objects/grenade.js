@@ -113,6 +113,7 @@ Grenade.prototype.update = function() {
 Grenade.prototype.explode = function() {
 	this.explosionParticleSystem.start(this.position);
 	this.exploded = true;
+	AudioManager.playOneOff("explosion");
 }
 
 Grenade.prototype.smoke = function() {

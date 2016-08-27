@@ -14,6 +14,11 @@ AudioManager.initialize = function() {
 	this.clips.push(new AudioClip("static/audio/effects/foot_fall.mp3", "mpeg", "foot_fall"));
 	this.clips.push(new AudioClip("static/audio/effects/land.mp3", "mpeg", "land"));
 	this.clips.push(new AudioClip("static/audio/effects/jump.mp3", "mpeg", "jump"));
+	this.clips.push(new AudioClip("static/audio/effects/death.mp3", "mpeg", "death"));
+	this.clips.push(new AudioClip("static/audio/effects/grenade_throw.mp3", "mpeg", "grenade_throw"));
+	this.clips.push(new AudioClip("static/audio/effects/hit.mp3", "mpeg", "hit"));
+	this.clips.push(new AudioClip("static/audio/effects/shield_cast.mp3", "mpeg", "shield_cast"));
+	this.clips.push(new AudioClip("static/audio/effects/explosion.mp3", "mpeg", "explosion"));
 }
 
 AudioManager.getClip = function(name) {

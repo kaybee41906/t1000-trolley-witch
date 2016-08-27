@@ -103,6 +103,7 @@ Player.update = function() {
 	if(InputManager.keyDown(InputManager.keys.UP_ARROW) && (!this.jumping && !this.falling) && this.jumpRelease) {
 		this.jumping = true;
 		this.jumpRelease = false;
+		AudioManager.playOneOff("jump");
 	}
 	if(!InputManager.keyDown(InputManager.keys.UP_ARROW)) {
 		this.jumpRelease = true;
@@ -126,6 +127,7 @@ Player.update = function() {
 				this.velocity.y = 0;
 				this.position.y = (Config.trainLevel * Renderer.conversionRatio) - this.height;
 				this.falling = false;
+				AudioManager.playOneOff("land");
 			}
 			else {
 				this.die();
