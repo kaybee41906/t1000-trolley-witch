@@ -53,7 +53,7 @@ Player.initialize = function() {
 
 	this.blocking = false;
 
-	this.maxStamina = 100;
+	this.maxStamina = 200;
 	this.stamina = this.maxStamina;
 	this.overloadRecoveryPoint = 50;
 	this.staminaDrainRate = 2;
@@ -71,12 +71,25 @@ Player.initialize = function() {
 
 	this.boundingBox = new AABB(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height);
 	this.dead = false;
+
+	this.lives = 3;
+	this.iFrames = 30;
+	this.iFrameTimer = 0;
+	this.hit = false;
 }
 
 Player.update = function() {
 	var car = this.checkTrainCarAABB();
 	if(!car) {
 		this.falling = true;
+	}
+
+	if(this.hit) {
+		this.iFrameTimer++;
+		if(this.iFrameTimer >= this.iFrames) {
+			this.hit = false;
+			this.iFrameTimer = 0;
+		}
 	}
 
 	if(InputManager.keyDown(InputManager.keys.UP_ARROW) && (!this.jumping && !this.falling) && this.jumpRelease) {
@@ -170,6 +183,16 @@ Player.update = function() {
 	this.currentAnim.update();
 }
 
+Player.registerHit = function() {
+	if(!this.hit) {
+		this.hit = true;
+		this.lives--;
+		if(this.lives <= 0)
+			this.dead = true;
+		console.log("hit");
+	}
+}
+
 Player.checkTrainCarAABB = function() {
 	var collided = false;
 	$.each(TrainCarManager.trainCars, function(key, car){
@@ -197,14 +220,16 @@ Player.render = function() {
 	ctx.font = "25px Arial";
 	ctx.fillStyle = "white";
 	ctx.fillText("Shield Stamina", 100, 30);
+	ctx.fillText("Lives: x" + this.lives, Renderer.screenWidth - 100, 30);
+	ctx.fillText("iFrames: " + this.iFrameTimer, Renderer.screenWidth - 100, 75);
 	ctx.fillStyle = "gray";
-	ctx.fillRect(20, 40, this.maxStamina * 2, 30);
+	ctx.fillRect(20, 40, this.maxStamina, 30);
 	if(this.overloaded || this.overloadedHolding) {
 		ctx.fillStyle="red";
 	} else {
 		ctx.fillStyle = "blue";
 	}
-	ctx.fillRect(20, 40, this.stamina * 2, 30);
+	ctx.fillRect(20, 40, this.stamina, 30);
 
 	ctx = Renderer.context;
 	this.currentAnim.render(this.position.x, this.position.y, this.width, this.height);

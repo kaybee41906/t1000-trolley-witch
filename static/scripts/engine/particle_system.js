@@ -1,12 +1,13 @@
 // particle_system.js
 
-function ParticleSystem(size, density, duration, frequency, force, sprite) {
+function ParticleSystem(size, density, duration, frequency, force, life, sprite) {
 	this.size = size;
 	this.density = density;
 	this.sprite = sprite;
 	this.duration = duration;
 	this.frequency = frequency;
 	this.force = force;
+	this.life = life;
 
 	this.spawnTimer = 0;
 	this.runTime = 0;
@@ -48,8 +49,9 @@ ParticleSystem.prototype.update = function() {
 
 					var force = randomRange(this.force.min, this.force.max);
 					var size = randomRange(this.size.min, this.size.max);
+					var life = randomRange(this.life.min, this.life.max);
 
-					this.particles.push(new Particle(this.position, size, angle, force, this.sprite, this.duration));
+					this.particles.push(new Particle(this.position, size, angle, force, this.sprite, life));
 				}
 			}
 		}
@@ -67,7 +69,8 @@ ParticleSystem.prototype.update = function() {
 
 	for(var i = 0; i < this.particles.length; i++) {
 		if(this.particles[i].position.y >= Renderer.screenHeight ||
-			this.particles[i].position.x < -this.particles[i].size) {
+			this.particles[i].position.x < -this.particles[i].size ||
+			this.particles[i].dead()) {
 			this.particles.splice(i, 1);
 			i--;
 		}

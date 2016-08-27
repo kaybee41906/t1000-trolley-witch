@@ -15,3 +15,7 @@ function addVector(v1, v2) {
 function zeroVector() {
 	return {x: 0, y: 0};
 }
+
+function distance(p1, p2) {
+	return Math.sqrt(((p2.x - p1.x) * (p2.x - p1.x)) + ((p2.y - p1.y) * (p2.y - p1.y)));
+}

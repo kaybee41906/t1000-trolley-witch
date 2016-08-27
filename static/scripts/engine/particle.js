@@ -15,11 +15,13 @@ function Particle(position, size, angle, force, sprite, life) {
 }
 
 Particle.prototype.update = function() {
-	this.velocity = Physics.applyForce(this.velocity, this.gravForce, this.maxVelocity);
+	if(this.life > 0) {
+		this.velocity = Physics.applyForce(this.velocity, this.gravForce, this.maxVelocity);
 
-	this.position = addVector(this.position, this.velocity);
+		this.position = addVector(this.position, this.velocity);
 
-	this.life--;
+		this.life--;
+	}
 }
 
 Particle.prototype.dead = function() {

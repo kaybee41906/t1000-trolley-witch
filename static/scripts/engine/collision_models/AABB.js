@@ -22,3 +22,14 @@ AABB.prototype.comparePoint = function(x, y) {
 		return true;
 	return false;
 }
+
+AABB.prototype.compareCircle = function(circlePos, radius) {
+	var compare = {x:circlePos.x, y:circlePos.y};
+
+	if(compare.x > this.min.x) compare.x = this.min.x;
+	if(compare.x < this.max.x) compare.x = this.max.x;
+	if(compare.y > this.min.y) compare.y = this.min.y;
+	if(compare.y < this.max.y) compare.y = this.max.y;
+
+	return distance(compare, circlePos) < radius;
+}
