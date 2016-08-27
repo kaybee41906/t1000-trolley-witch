@@ -133,13 +133,14 @@ Grenade.prototype.render = function() {
 		this.smokeParticleSystem.render();
 		this.explosionParticleSystem.render();
 
-		if(this.damaging()) {
+		// DEBUGGING BLAST RADIUS
+		/*if(this.damaging()) {
 			var ctx = Renderer.context;
 			ctx.beginPath();
 			ctx.arc(this.position.x + (this.explosionRadius * 2), this.position.y, this.explosionRadius, 0, 2*Math.PI);
 			ctx.lineWidth = 5;
       		ctx.strokeStyle = '#003300';
 			ctx.stroke();
-		}
+		}*/
 	}
 }

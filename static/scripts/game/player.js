@@ -50,6 +50,14 @@ Player.initialize = function() {
 	this.shieldSprite = Renderer.getSprite("shield");
 
 	this.currentAnim = this.albusStdAnim;
+	//this.character = Main.selectedCharacter;
+	//if(Main.selectedCharacter) {
+	//	this.currentAnim = this.albusStdAmin;
+	//} else {
+	//	this.currentAnim = this.scorpiusStdAnim;
+	//}
+	console.log(this.currentAnim);
+	console.log(Main.selectedCharacter);
 
 	this.blocking = false;
 
@@ -120,7 +128,7 @@ Player.update = function() {
 				this.falling = false;
 			}
 			else {
-				this.dead = true;
+				this.die();
 			}
 		}
 	}
@@ -188,9 +196,14 @@ Player.registerHit = function() {
 		this.hit = true;
 		this.lives--;
 		if(this.lives <= 0)
-			this.dead = true;
+			this.die();
 		console.log("hit");
 	}
+}
+
+Player.die = function() {
+	this.dead = true;
+	Main.changeState(Main.gameState, GameState.GameOver);
 }
 
 Player.checkTrainCarAABB = function() {

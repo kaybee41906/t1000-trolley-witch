@@ -24,7 +24,6 @@ MainMenu.update = function() {
 }
 
 MainMenu.render = function() {
-	console.log("main menu");
 	var ctx = Renderer.context;
 	var img = Renderer.getResource(this.background);
 	ctx.drawImage(img, 0, 0, Renderer.canvas.width, Renderer.canvas.height);

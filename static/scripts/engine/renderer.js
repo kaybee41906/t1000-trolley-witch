@@ -189,6 +189,7 @@ Renderer.render = function() {
 		case GameState.Pause:
 			break;
 		case GameState.GameOver:
+			GameOver.render();
 			break;
 		case GameState.Win:
 			break;

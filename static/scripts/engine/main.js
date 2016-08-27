@@ -14,10 +14,11 @@ Main.initialize = function() {
 	Physics.initialize();
 
 	this.gameLoop = setInterval(Main.run, 1000/Config.fps);
-	this.changeState (null, GameState.Game);
+	this.changeState (null, GameState.MainMenu);
 
 	this.gameTime = (new Date).getTime();
 	this.deltaTime = 0;
+	this.selectedCharacter = null;
 }
 
 Main.update = function() {
@@ -38,6 +39,7 @@ Main.update = function() {
 		case GameState.Pause:
 			break;
 		case GameState.GameOver:
+			GameOver.update();
 			break;
 		case GameState.Win:
 			break;
@@ -66,6 +68,7 @@ Main.changeState = function(previousState, newState) {
 		case GameState.Pause:
 			break;
 		case GameState.GameOver:
+			GameOver.initialize();
 			break;
 		case GameState.Win:
 			break;
