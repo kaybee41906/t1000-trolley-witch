@@ -86,7 +86,8 @@ Renderer.sprites = {
 		{"name": "smoke_4", "url": "static/images/effects/smoke_4.png"},
 		{"name": "smoke_5", "url": "static/images/effects/smoke_5.png"},
 		{"name": "smoke_6", "url": "static/images/effects/smoke_6.png"},
-		{"name": "smoke_7", "url": "static/images/effects/smoke_7.png"},	
+		{"name": "smoke_7", "url": "static/images/effects/smoke_7.png"},
+		{"name": "explosion_1", "url": "static/images/effects/explosion_1.png"}
 	], "game": [
 		{"name": "train_1", "url": "static/images/game/trains/train_1.png"}
 	], "general": [

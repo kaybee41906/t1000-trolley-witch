@@ -25,7 +25,10 @@ function Grenade(position, angle, force) {
 	var density = 200;
 	var duration = 1;
 	var frequency = 1;
-	this.explosionParticleSystem = new ParticleSystem(sizeRange, density, duration, frequency, forceRange, Renderer.getSprite("smoke_3"));
+	var smokeSprite = Renderer.getSprite("smoke_3");
+	var explosionSprite = Renderer.getSprite("explosion_1");
+	this.smokeParticleSystem = new ParticleSystem(sizeRange, density, duration, frequency, forceRange, smokeSprite);
+	this.explosionParticleSystem = new ParticleSystem(sizeRange, density, duration, frequency, forceRange, explosionSprite);
 }
 
 Grenade.prototype.resize = function(){
@@ -60,15 +63,16 @@ Grenade.prototype.update = function() {
 		if(this.position.y >= Config.trainLevel * Renderer.conversionRatio)
 			this.explode();
 	} else {
-		this.explosionParticleSystem.update();
+		this.smokeParticleSystem.update();
 
-		if(!this.explosionParticleSystem.running())
+		if(!this.smokeParticleSystem.running())
 			this.explosionDone = true;
 	}
 }
 
 Grenade.prototype.explode = function() {
 	this.explosionParticleSystem.start(this.position);
+	this.smokeParticleSystem.start(this.position);
 	this.exploded = true;
 }
 
@@ -78,6 +82,7 @@ Grenade.prototype.render = function() {
 		var img = Renderer.getResource(this.sprite);
 		ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
 	} else {
+		this.smokeParticleSystem.render();
 		this.explosionParticleSystem.render();
 	}
 }

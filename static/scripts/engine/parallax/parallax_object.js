@@ -5,7 +5,11 @@ function ParallaxObject(sprite, position, width, height, speed) {
 	this.position = position;
 	this.width = width;
 	this.height = height;
-	this.velocity = { x: speed, y: 0 };
+	// SCROLL RIGHT
+	//this.velocity = { x: speed, y: 0 };
+
+	// SCROLL LEFT
+	this.velocity = { x: -speed, y: 0 };
 
 	this.dead = false;
 }

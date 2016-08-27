@@ -23,7 +23,11 @@ ParallaxObjectLayer.prototype.createObject = function() {
 	var width = randomRange(this.widthRange.min, this.widthRange.max);
 	var height = randomRange(this.heightRange.min, this.heightRange.max);
 
-	var position = {x: -width, y: this.y - height };
+	// SCROLL RIGHT
+	//var position = {x: -width, y: this.y - height };
+
+	// SCROLL LEFT
+	var position = {x: Renderer.screenWidth, y: this.y - height };
 
 	var obj = new ParallaxObject(sprite, position, width, height, this.speed);
 	this.objects.push(obj);
