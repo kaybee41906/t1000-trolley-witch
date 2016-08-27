@@ -12,6 +12,7 @@ Main.initialize = function() {
 	Renderer.initialize();
 	InputManager.initialize();
 	Physics.initialize();
+	AudioManager.initialize();
 
 	this.gameLoop = setInterval(Main.run, 1000/Config.fps);
 	this.changeState (null, GameState.MainMenu);
@@ -44,6 +45,7 @@ Main.update = function() {
 		case GameState.Win:
 			break;
 	}
+	AudioManager.update();
 }
 
 Main.run = function() {

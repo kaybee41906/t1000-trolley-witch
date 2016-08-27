@@ -76,8 +76,8 @@ Renderer.sprites = {
 		{"name": "lady_torso_1", "url": "static/images/sprites/lady/t1.png"},
 	], "backgrounds": [
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"},
-		{"name": "scroll_bg_1", "url": "static/images/backgrounds/scroll_bg_1.png"},
-		{"name": "tree_1", "url": "static/images/backgrounds/tree_1.png"}
+		{"name": "scroll_bg_1", "url": "static/images/backgrounds/bg.png"},
+		{"name": "tree_1", "url": "static/images/backgrounds/tree.png"}
 	], "effects": [
 		{"name": "shield", "url": "static/images/effects/shield.png"},
 		{"name": "smoke_1", "url": "static/images/effects/smoke_1.png"},
@@ -90,7 +90,7 @@ Renderer.sprites = {
 		{"name": "explosion_1", "url": "static/images/effects/explosion_1.png"},
 		{"name": "explosion_2", "url": "static/images/effects/explosion_2.png"}
 	], "game": [
-		{"name": "train_1", "url": "static/images/game/trains/train_1.png"}
+		{"name": "train_1", "url": "static/images/game/trains/train.png"}
 	], "general": [
 		{"name": "pumpkin", "url": "static/images/sprites/pumpkin.png"}
 	]
