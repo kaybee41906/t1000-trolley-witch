@@ -57,6 +57,7 @@ Renderer.sprites = {
 		{"name": "albus_s4", "url": "static/images/sprites/albus/s4.png"},
 		{"name": "albus_s5", "url": "static/images/sprites/albus/s5.png"},
 		{"name": "albus_s6", "url": "static/images/sprites/albus/s6.png"},
+		{"name": "albus_life", "url": "static/images/sprites/albus/life.png"},
 	], "scorpius": [
 		{"name": "scorpius_1", "url": "static/images/sprites/scorpius/1.png"},
 		{"name": "scorpius_2", "url": "static/images/sprites/scorpius/2.png"},
@@ -70,6 +71,7 @@ Renderer.sprites = {
 		{"name": "scorpius_s4", "url": "static/images/sprites/scorpius/s4.png"},
 		{"name": "scorpius_s5", "url": "static/images/sprites/scorpius/s5.png"},
 		{"name": "scorpius_s6", "url": "static/images/sprites/scorpius/s6.png"},
+		{"name": "scorpius_life", "url": "static/images/sprites/scorpius/life.png"},
 	], "trolly_witch": [
 		{"name": "lady_legs_1", "url": "static/images/sprites/lady/l1.png"},
 		{"name": "lady_legs_2", "url": "static/images/sprites/lady/l2.png"},
@@ -190,24 +192,25 @@ Renderer.render = function() {
 		console.log("loading");
 	} else {
 	
-	switch(Main.gameState) {
-		case GameState.MainMenu:
-			MainMenu.render();
-			break;
-		case GameState.CharacterSelect:
-			CharacterSelect.render();
-			break;
-		case GameState.Game:
-			Game.render();
-			break;
-		case GameState.Pause:
-			break;
-		case GameState.GameOver:
-			GameOver.render();
-			break;
-		case GameState.Win:
-			break;
-	}
+		switch(Main.gameState) {
+			case GameState.MainMenu:
+				MainMenu.render();
+				break;
+			case GameState.CharacterSelect:
+				CharacterSelect.render();
+				break;
+			case GameState.Game:
+				Game.render();
+				break;
+			case GameState.Pause:
+				break;
+			case GameState.GameOver:
+				GameOver.render();
+				break;
+			case GameState.Win:
+				WinScreen.render();
+				break;
+		}
 	}
 }
 

@@ -43,6 +43,7 @@ Main.update = function() {
 			GameOver.update();
 			break;
 		case GameState.Win:
+			WinScreen.update();
 			break;
 	}
 	AudioManager.update();
@@ -74,6 +75,7 @@ Main.changeState = function(previousState, newState) {
 			GameOver.initialize();
 			break;
 		case GameState.Win:
+			WinScreen.initialize();
 			break;
 	}
 }
