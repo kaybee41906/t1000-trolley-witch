@@ -87,6 +87,10 @@ Renderer.sprites = {
 	], "backgrounds": [
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"},
 		{"name": "scroll_bg_1", "url": "static/images/backgrounds/bg.png"},
+		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu_bg.png"},
+		{"name": "character_select_bg", "url": "static/images/backgrounds/character_select_bg.png"},
+		{"name": "game_over_bg", "url": "static/images/backgrounds/game_over_bg.png"},
+		{"name": "win_screen_bg", "url": "static/images/backgrounds/game_over_bg.png"},
 		{"name": "tree_1", "url": "static/images/backgrounds/tree.png"}
 	], "effects": [
 		{"name": "shield", "url": "static/images/effects/shield.png"},

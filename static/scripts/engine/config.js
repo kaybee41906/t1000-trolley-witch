@@ -12,7 +12,7 @@ Config.initialize = function() {
 
 	this.static = window.location.pathname.split("index")[0] + "static/";
 
-	this.titleFont = "60px Comic Sans MS";
+	this.titleFont = "60px OrangeJuice";
 	this.titleColor = "black";
 
 	this.masterWidth = 1920;
