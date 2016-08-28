@@ -11,16 +11,17 @@ CharacterSelect.initialize = function() {
 	this.scorpiusStd = Renderer.getSprite("scorpius_select");
 	this.scorpiusOutline = Renderer.getSprite("scorpius_selected");
 
-	var albusBtn = new Button(Renderer.canvas.width/4, 250, 500, 500, this.albusStd, CharacterSelect.chooseAlbus)
-	var scorpiusBtn = new Button(Renderer.canvas.width - 500, 250, 500, 500, this.scorpiusStd, CharacterSelect.chooseScorpius)
+	console.log(Renderer.screenWidth);
+	var albusBtn = new Button(0, 0, 500, 500, this.albusOutline, CharacterSelect.chooseAlbus)
+	var scorpiusBtn = new Button(Renderer.screenWidth - 300, 0, 500, 500, this.scorpiusStd, CharacterSelect.chooseScorpius)
 	this.buttons.push(albusBtn);
 	this.buttons.push(scorpiusBtn);
 
 
-	var startBtn = new Button(Renderer.screenWidth, Renderer.screenHeight, 150, 50, Renderer.getSprite("start_game_btn"), CharacterSelect.startGame);
+	var startBtn = new Button(Renderer.canvas.width/2, Renderer.canvas.height/2 + (300 * Renderer.conversionRatio), 300 * Renderer.conversionRatio, 100 * Renderer.conversionRatio, Renderer.getSprite("start_game_btn"), CharacterSelect.startGame);
 	this.buttons.push(startBtn);
 
-	this.albusSelected = false;
+	this.albusSelected = true;
 	this.scorpiusSelected = false;
 }
 
