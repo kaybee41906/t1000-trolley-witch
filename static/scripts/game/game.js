@@ -3,12 +3,13 @@
 var Game = {};
 
 Game.initialize = function() {
+	EndGame.initialize();
 	TrainCarManager.initialize();
-	
 	ParallaxManager.initialize();
 	Lady.initialize();
 	GrenadeManager.initialize();
 	Player.initialize();
+	UI.initialize();
 }
 
 Game.resize = function() {
@@ -19,11 +20,13 @@ Game.resize = function() {
 }
 
 Game.update = function() {
+	EndGame.update();
 	ParallaxManager.update();
 	TrainCarManager.update();
 	GrenadeManager.update();
 	Lady.update();
 	Player.update();
+	UI.update();
 }
 
 Game.render = function() {
@@ -41,4 +44,6 @@ Game.render = function() {
 	Lady.render();
 	Player.render();
 	GrenadeManager.render();
+	EndGame.render();
+	UI.render();
 }

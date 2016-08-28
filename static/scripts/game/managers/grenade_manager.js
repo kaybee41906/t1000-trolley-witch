@@ -54,11 +54,11 @@ GrenadeManager.update = function() {
 }
 
 GrenadeManager.render = function() {
-	var ctx = Renderer.context;
+	/*var ctx = Renderer.context;
 	ctx.font = "25px Arial";
 	ctx.fillStyle = "white";
 	ctx.fillText("Grenade Spawn In: " + this.currentGrenadeTimer, 500, 30);
-	ctx.fillText("Grenade Count: " + this.grenades.length, 500, 50);
+	ctx.fillText("Grenade Count: " + this.grenades.length, 500, 50);*/
 
 	$.each(this.grenades, function(key, grenade) {
 		grenade.render();

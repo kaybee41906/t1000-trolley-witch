@@ -260,21 +260,6 @@ Player.resize = function() {
 
 Player.render = function() {
 	var ctx = Renderer.context;
-	ctx.font = "25px Arial";
-	ctx.fillStyle = "white";
-	ctx.fillText("Shield Stamina", 100, 30);
-	ctx.fillText("Lives: x" + this.lives, Renderer.screenWidth - 100, 30);
-	ctx.fillText("iFrames: " + this.iFrameTimer, Renderer.screenWidth - 100, 75);
-	ctx.fillStyle = "gray";
-	ctx.fillRect(20, 40, this.maxStamina, 30);
-	if(this.overloaded || this.overloadedHolding) {
-		ctx.fillStyle="red";
-	} else {
-		ctx.fillStyle = "blue";
-	}
-	ctx.fillRect(20, 40, this.stamina, 30);
-
-	ctx = Renderer.context;
 	this.currentAnim.render(this.position.x, this.position.y, this.width, this.height);
 	if(this.blocking) {
 		var img = Renderer.getResource(this.shieldSprite);
