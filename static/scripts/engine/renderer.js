@@ -14,6 +14,8 @@ Renderer.initialize = function() {
 	this.conversionRatio = Config.masterRatio;
 	this.resize();
 
+	console.log(this.screenWidth);
+
 	this.resourceCache = [];
 	this.loadingResources = [];
 	this.loadedResources = [];
@@ -94,6 +96,8 @@ Renderer.sprites = {
 		{"name": "character_select_bg", "url": "static/images/backgrounds/character_select_bg.png"},
 		{"name": "game_over_bg_a", "url": "static/images/backgrounds/game_over_bg_a.png"},
 		{"name": "game_over_bg_s", "url": "static/images/backgrounds/game_over_bg_s.png"},
+		{"name": "win_bg_a", "url": "static/images/backgrounds/win_albus.png"},
+		{"name": "win_bg_s", "url": "static/images/backgrounds/win_scorpius.png"},
 		{"name": "win_screen_bg", "url": "static/images/backgrounds/game_over_bg_a.png"},
 		{"name": "tree_1", "url": "static/images/backgrounds/tree.png"}
 	], "effects": [

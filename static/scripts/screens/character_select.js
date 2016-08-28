@@ -11,16 +11,18 @@ CharacterSelect.initialize = function() {
 	this.scorpiusStd = Renderer.getSprite("scorpius_select");
 	this.scorpiusOutline = Renderer.getSprite("scorpius_selected");
 
-	var albusBtn = new Button(Renderer.canvas.width/4, 250, 500, 500, this.albusStd, CharacterSelect.chooseAlbus)
-	var scorpiusBtn = new Button(Renderer.canvas.width - 500, 250, 500, 500, this.scorpiusStd, CharacterSelect.chooseScorpius)
+	console.log(Renderer.screenWidth/4);
+	console.log(700 * Renderer.conversionRatio);
+	var albusBtn = new Button(Renderer.screenWidth/4 - (150 * Renderer.conversionRatio) , Renderer.canvas.height/2 - ((500/2) * Renderer.conversionRatio), 500 * Renderer.conversionRatio, 500 * Renderer.conversionRatio, this.albusOutline, CharacterSelect.chooseAlbus)
+	var scorpiusBtn = new Button(Renderer.canvas.width * (3/4) - (350 * Renderer.conversionRatio), Renderer.canvas.height/2 - ((500/2) * Renderer.conversionRatio), 500 * Renderer.conversionRatio, 500 * Renderer.conversionRatio, this.scorpiusStd, CharacterSelect.chooseScorpius)
 	this.buttons.push(albusBtn);
 	this.buttons.push(scorpiusBtn);
 
 
-	var startBtn = new Button(Renderer.screenWidth, Renderer.screenHeight, 150, 50, Renderer.getSprite("start_game_btn"), CharacterSelect.startGame);
+	var startBtn = new Button(Renderer.canvas.width/2 - (150 * Renderer.conversionRatio), Renderer.canvas.height/2 + (300 * Renderer.conversionRatio), 300 * Renderer.conversionRatio, 100 * Renderer.conversionRatio, Renderer.getSprite("start_game_btn"), CharacterSelect.startGame);
 	this.buttons.push(startBtn);
 
-	this.albusSelected = false;
+	this.albusSelected = true;
 	this.scorpiusSelected = false;
 }
 

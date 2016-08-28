@@ -4,7 +4,10 @@ var WinScreen = {};
 
 WinScreen.initialize = function() {
 	this.buttons = [];
-	this.background = Renderer.getSprite("win_screen_bg");
+	this.background = Renderer.getSprite("win_bg_a");
+	if(!Main.selectedCharacter) {
+		this.background = Renderer.getSprite("win_bg_s");
+	}
 
 	var mainMenuBtn = new Button(25 * Renderer.conversionRatio, 25 * Renderer.conversionRatio, 300 * Renderer.conversionRatio, 100 * Renderer.conversionRatio, Renderer.getSprite("main_menu_btn"), WinScreen.mainMenu);
 	var quitBtn = new Button(25 * Renderer.conversionRatio, 175 * Renderer.conversionRatio, 300 * Renderer.conversionRatio, 100 * Renderer.conversionRatio, Renderer.getSprite("quit_game_btn"), WinScreen.quit);
