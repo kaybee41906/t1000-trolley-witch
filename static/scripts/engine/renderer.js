@@ -36,10 +36,11 @@ Renderer.initialize = function() {
 Renderer.sprites = {
 	"buttons": [
 		{"name": "main_menu_btn", "url": "static/images/buttons/main_menu.png"},
-		{"name": "character_select_btn", "url": "static/images/buttons/character_select.png"},
-		{"name": "start_game_btn", "url": "static/images/buttons/start_game.png"},
+		{"name": "character_select_btn", "url": "static/images/buttons/character.png"},
+		{"name": "start_game_btn", "url": "static/images/buttons/start.png"},
 		{"name": "resume_game_btn", "url": "static/images/buttons/resume_game.png"},
-		{"name": "quit_game_btn", "url": "static/images/buttons/quit_game.png"},
+		{"name": "retry_btn", "url": "static/images/buttons/retry.png"},
+		{"name": "quit_game_btn", "url": "static/images/buttons/quit.png"},
 		{"name": "albus_select", "url": "static/images/buttons/albus_unselect.png"},
 		{"name": "albus_selected", "url": "static/images/buttons/albus_select.png"},
 		{"name": "scorpius_select", "url": "static/images/buttons/scorpius_unselect.png"},
@@ -91,8 +92,9 @@ Renderer.sprites = {
 		{"name": "scroll_bg_1", "url": "static/images/backgrounds/bg.png"},
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu_bg.png"},
 		{"name": "character_select_bg", "url": "static/images/backgrounds/character_select_bg.png"},
-		{"name": "game_over_bg", "url": "static/images/backgrounds/game_over_bg.png"},
-		{"name": "win_screen_bg", "url": "static/images/backgrounds/game_over_bg.png"},
+		{"name": "game_over_bg_a", "url": "static/images/backgrounds/game_over_bg_a.png"},
+		{"name": "game_over_bg_s", "url": "static/images/backgrounds/game_over_bg_s.png"},
+		{"name": "win_screen_bg", "url": "static/images/backgrounds/game_over_bg_a.png"},
 		{"name": "tree_1", "url": "static/images/backgrounds/tree.png"}
 	], "effects": [
 		{"name": "shield", "url": "static/images/effects/shield.png"},

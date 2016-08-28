@@ -11,8 +11,8 @@ MainMenu.initialize = function() {
 	this.buttons = [];
 	this.background = Renderer.getSprite("main_menu_bg");
 
-	var csButton = new Button(10, 10, 100, 50, Renderer.getSprite("character_select_btn"), MainMenu.characterSelect);
-	var quitBtn = new Button(10, 70, 100, 50, Renderer.getSprite("quit_game_btn"), MainMenu.quit);
+	var csButton = new Button(25 * Renderer.conversionRatio, 25 * Renderer.conversionRatio, 300 * Renderer.conversionRatio, 100 * Renderer.conversionRatio, Renderer.getSprite("character_select_btn"), MainMenu.characterSelect);
+	var quitBtn = new Button(25 * Renderer.conversionRatio, 175 * Renderer.conversionRatio, 300 * Renderer.conversionRatio, 100 * Renderer.conversionRatio, Renderer.getSprite("quit_game_btn"), MainMenu.quit);
 	this.buttons.push(csButton);
 	this.buttons.push(quitBtn);
 }
