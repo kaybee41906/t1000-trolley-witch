@@ -4,6 +4,7 @@ function AudioClip(clip, type, name) {
 	this.source = document.createElement("audio");
 	this.source.src = clip;
 	this.source.type = type;
+	this.source.volume = Config.effectVolume;
 	this.name = name;
 }
 

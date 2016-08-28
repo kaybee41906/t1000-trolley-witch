@@ -49,6 +49,9 @@ Config.initialize = function() {
 
 	this.bg2_y = 200;
 	this.bg3_y = 100;
+
+	this.effectVolume = 1;
+	this.musicVolume = 0.5;
 }
 
 var GameState = 
