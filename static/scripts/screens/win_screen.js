@@ -6,8 +6,8 @@ WinScreen.initialize = function() {
 	this.buttons = [];
 	this.background = Renderer.getSprite("win_screen_bg");
 
-	var mainMenuBtn = new Button(10, 70, 100, 50, Renderer.getSprite("main_menu_btn"), WinScreen.mainMenu);
-	var quitBtn = new Button(10, 130, 100, 50, Renderer.getSprite("quit_game_btn"), WinScreen.quit);
+	var mainMenuBtn = new Button(25 * Renderer.conversionRatio, 25 * Renderer.conversionRatio, 300 * Renderer.conversionRatio, 100 * Renderer.conversionRatio, Renderer.getSprite("main_menu_btn"), WinScreen.mainMenu);
+	var quitBtn = new Button(25 * Renderer.conversionRatio, 175 * Renderer.conversionRatio, 300 * Renderer.conversionRatio, 100 * Renderer.conversionRatio, Renderer.getSprite("quit_game_btn"), WinScreen.quit);
 	this.buttons.push(mainMenuBtn);
 	this.buttons.push(quitBtn);
 }
@@ -26,7 +26,7 @@ WinScreen.render = function() {
 	ctx.font = Config.titleFont;
 	ctx.fillStyle = "white";
 	ctx.textAlign = "center";
-	ctx.fillText("You're Winner!", Renderer.canvas.width/2, Renderer.canvas.height/2);
+	ctx.fillText("Congratulations! You escaped!", Renderer.canvas.width/2, 100 * Renderer.conversionRatio);
 
 	$.each(this.buttons, function(key, button) {
 		button.render();
