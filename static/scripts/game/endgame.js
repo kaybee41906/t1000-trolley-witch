@@ -3,7 +3,7 @@
 var EndGame = {};
 
 EndGame.initialize = function() {
-	this.gameLength = 15000;
+	this.gameLength = 10000;
 	this.gameTimer = 0;
 }
 

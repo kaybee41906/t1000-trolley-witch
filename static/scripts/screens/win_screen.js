@@ -29,7 +29,8 @@ WinScreen.render = function() {
 	ctx.font = Config.titleFont;
 	ctx.fillStyle = "white";
 	ctx.textAlign = "center";
-	ctx.fillText("Congratulations! You escaped!", Renderer.canvas.width/2, 100 * Renderer.conversionRatio);
+	ctx.fillText("Congratulations! You escaped...", Renderer.canvas.width/2, 100 * Renderer.conversionRatio);
+	ctx.fillText("THE TROLLY WITCH!", Renderer.canvas.width/2, 175 * Renderer.conversionRatio);
 
 	$.each(this.buttons, function(key, button) {
 		button.render();
