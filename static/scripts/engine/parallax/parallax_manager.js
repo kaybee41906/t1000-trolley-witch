@@ -5,7 +5,7 @@ var ParallaxManager = {};
 ParallaxManager.initialize = function() {
 	this.layers = [];
 
-	var bg = new ParallaxLayer(Renderer.getSprite("scroll_bg_1"), 2, 5760 * Renderer.conversionRatio, Renderer.canvas.height);
+	var bg = new ParallaxLayer(Renderer.getSprite("scroll_bg_1"), 0.5, 5760 * Renderer.conversionRatio, Renderer.canvas.height);
 	this.layers.push(bg);
 
 	var bg_2_sprites = [

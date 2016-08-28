@@ -31,7 +31,7 @@ MainMenu.render = function() {
 	ctx.font = Config.titleFont;
 	ctx.fillStyle = Config.titleColor;
 	ctx.textAlign = "center";
-	ctx.fillText("T-1000: Trolly Witch", Renderer.canvas.width/2, Renderer.canvas.height/2);
+	ctx.fillText("T-1000: Trolly Witch", Renderer.canvas.width/2, 100 * Renderer.conversionRatio);
 
 	$.each(this.buttons, function(key, button) {
 		button.render();
