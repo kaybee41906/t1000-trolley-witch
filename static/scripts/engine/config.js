@@ -29,6 +29,9 @@ Config.initialize = function() {
 	this.ladyWidth = 250;
 	this.ladyHeight = 240;
 
+	this.grenadeMagicX = 0.642948;
+	this.grenadeMagicY = 0.392795;
+
 	this.playerJumpArc = 300;
 	this.trainLevel = 780;
 

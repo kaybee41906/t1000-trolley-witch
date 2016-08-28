@@ -18,7 +18,16 @@ Lady.initialize = function() {
 	legSprites.push(Renderer.getSprite("lady_legs_4"));
 	legSprites.push(Renderer.getSprite("lady_legs_5"));
 	legSprites.push(Renderer.getSprite("lady_legs_6"));
-	this.legAnim = new Animation(legSprites, Config.animationTimer);
+	this.legAnim = new Animation(legSprites, Config.animationTimer, false);
+
+	var throwSprites = [];
+	throwSprites.push(Renderer.getSprite("lady_torso_1"));
+	throwSprites.push(Renderer.getSprite("lady_torso_2"));
+	throwSprites.push(Renderer.getSprite("lady_torso_3"));
+	throwSprites.push(Renderer.getSprite("lady_torso_4"));
+	throwSprites.push(Renderer.getSprite("lady_torso_5"));
+	throwSprites.push(Renderer.getSprite("lady_torso_6"));
+	this.throwAnim = new Animation(throwSprites, Config.animationTimer, true);
 
 	this.currentAnim = this.legAnim;
 	this.torsoSprite = Renderer.getSprite("lady_torso_1");
@@ -31,6 +40,7 @@ Lady.initialize = function() {
 	this.maxVelocity = {x: 0, y:15};
 
 	this.boundingBox = new AABB(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height);
+	this.throwing = false;
 }
 
 Lady.resize = function() {
@@ -43,6 +53,11 @@ Lady.resize = function() {
 
 	this.width = Config.ladyWidth * Renderer.conversionRatio;
 	this.height = Config.ladyHeight * Renderer.conversionRatio;
+}
+
+Lady.throwGrenade = function() {
+	this.throwing = true;
+	this.throwAnim.currentFrame = 0;
 }
 
 Lady.update = function() {
@@ -83,6 +98,15 @@ Lady.update = function() {
 	this.nextTrain();
 
 	this.currentAnim.update();
+
+	if(this.throwing) {
+		this.throwAnim.update();
+		if(this.throwAnim.finished) {
+			this.throwing = false;
+			this.throwAnim.finished = false;
+			GrenadeManager.addGrenade();
+		}
+	}
 }
 
 Lady.nextTrain = function() {
@@ -108,7 +132,11 @@ Lady.checkTrainCarAABB = function() {
 
 Lady.render = function() {
 	this.currentAnim.render(this.position.x, this.position.y, this.width, this.height);
-	var ctx = Renderer.context;
-	var img = Renderer.getResource(this.torsoSprite);
-	ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
+	if(!this.throwing) {
+		var ctx = Renderer.context;
+		var img = Renderer.getResource(this.torsoSprite);
+		ctx.drawImage(img, this.position.x, this.position.y, this.width, this.height);
+	} else {
+		this.throwAnim.render(this.position.x, this.position.y, this.width, this.height);
+	}
 }

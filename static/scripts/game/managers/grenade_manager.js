@@ -9,7 +9,7 @@ GrenadeManager.initialize = function() {
 
 	this.currentGrenadeTimer = Math.floor(Math.random() * (this.grenadeFrequency.max - this.grenadeFrequency.min + 1)) + this.grenadeFrequency.min;
 
-	this.spawn = { x: Lady.position.x + Lady.width/2, y: Lady.position.y + Lady.height/2 };
+	this.spawn = { x: Lady.position.x + (Lady.width * Config.grenadeMagicX), y: Lady.position.y + (Lady.height * Config.grenadeMagicY) };
 
 	this.grenades = [];
 }
@@ -35,7 +35,7 @@ GrenadeManager.update = function() {
 	if(this.currentGrenadeTimer >= 0) {
 		this.currentGrenadeTimer--;
 		if(this.currentGrenadeTimer <= 0) {
-			this.addGrenade();
+			Lady.throwGrenade();
 			this.currentGrenadeTimer = randomRange(this.grenadeFrequency.min, this.grenadeFrequency.max);
 		}
 	}

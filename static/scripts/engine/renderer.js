@@ -78,6 +78,12 @@ Renderer.sprites = {
 		{"name": "lady_legs_5", "url": "static/images/sprites/lady/l5.png"},
 		{"name": "lady_legs_6", "url": "static/images/sprites/lady/l6.png"},
 		{"name": "lady_torso_1", "url": "static/images/sprites/lady/t1.png"},
+		{"name": "lady_torso_2", "url": "static/images/sprites/lady/t2.png"},
+		{"name": "lady_torso_3", "url": "static/images/sprites/lady/t3.png"},
+		{"name": "lady_torso_4", "url": "static/images/sprites/lady/t4.png"},
+		{"name": "lady_torso_5", "url": "static/images/sprites/lady/t5.png"},
+		{"name": "lady_torso_6", "url": "static/images/sprites/lady/t6.png"},
+		{"name": "lady_torso_7", "url": "static/images/sprites/lady/t7.png"},
 	], "backgrounds": [
 		{"name": "main_menu_bg", "url": "static/images/backgrounds/main_menu.jpg"},
 		{"name": "scroll_bg_1", "url": "static/images/backgrounds/bg.png"},
