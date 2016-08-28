@@ -87,129 +87,138 @@ Player.initialize = function() {
 }
 
 Player.update = function() {
-	var car = this.checkTrainCarAABB();
-	if(!car) {
-		this.falling = true;
-	}
-
-	if(this.hit) {
-		this.iFrameTimer++;
-		if(this.iFrameTimer >= this.iFrames) {
-			this.hit = false;
-			this.iFrameTimer = 0;
-		}
-	}
-
-	if(InputManager.keyDown(InputManager.keys.UP_ARROW) && (!this.jumping && !this.falling) && this.jumpRelease) {
-		this.jumping = true;
-		this.jumpRelease = false;
-		AudioManager.playOneOff("jump");
-	}
-	if(!InputManager.keyDown(InputManager.keys.UP_ARROW)) {
-		this.jumpRelease = true;
-	}
-
-	if(this.jumping) {
-		//this.blocking = false;
-		if(this.position.y >= (this.jumpStartY - (Config.playerJumpArc * Renderer.conversionRatio))) {
-			this.velocity = Physics.applyForce(this.velocity, this.jumpForce, this.maxVelocity);
-		} else {
+	if(!this.dead) {
+		var car = this.checkTrainCarAABB();
+		if(!car) {
 			this.falling = true;
-			this.jumping = false;
 		}
-	}
 
-	if(this.falling) {
-		//this.blocking = false;
-		this.velocity = Physics.applyGravity(this.velocity, this.maxVelocity);
-		if(car) {
-			if(!((this.position.y + this.height) > car.position.y + 10)) {
-				this.velocity.y = 0;
-				this.position.y = (Config.trainLevel * Renderer.conversionRatio) - this.height;
-				this.falling = false;
-				AudioManager.playOneOff("land");
-			}
-			else {
-				this.die();
+		if(this.hit) {
+			this.iFrameTimer++;
+			if(this.iFrameTimer >= this.iFrames) {
+				this.hit = false;
+				this.iFrameTimer = 0;
 			}
 		}
-	}
 
-	if(!this.jumping && !this.falling) {
-		AudioManager.playOneOff("foot_fall");
-	}
+		if(InputManager.keyDown(InputManager.keys.UP_ARROW) && (!this.jumping && !this.falling) && this.jumpRelease) {
+			this.jumping = true;
+			this.jumpRelease = false;
+			AudioManager.playOneOff("jump");
+		}
+		if(!InputManager.keyDown(InputManager.keys.UP_ARROW)) {
+			this.jumpRelease = true;
+		}
 
-	if(!this.blocking) {
-		if(this.stamina < this.maxStamina) {
-			this.stamina += this.staminaRecoverRate;
-			if(this.overloaded && this.stamina >= this.overloadRecoveryPoint) {
-				this.overloaded = false;
-			}
-			if(this.stamina >= this.maxStamina) {
-				this.stamina = this.maxStamina;
+		if(this.jumping) {
+			//this.blocking = false;
+			if(this.position.y >= (this.jumpStartY - (Config.playerJumpArc * Renderer.conversionRatio))) {
+				this.velocity = Physics.applyForce(this.velocity, this.jumpForce, this.maxVelocity);
+			} else {
+				this.falling = true;
+				this.jumping = false;
 			}
 		}
-		//if(!this.jumping && !this.falling && !this.stamina <= 0 && !this.overloaded && !this.overloadedHolding) {
-		if(!this.stamina <= 0 && !this.overloaded && !this.overloadedHolding) {
-			if(InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
-				this.blocking = true;
+
+		if(this.falling) {
+			//this.blocking = false;
+			this.velocity = Physics.applyGravity(this.velocity, this.maxVelocity);
+			if(car) {
+				if(!((this.position.y + this.height) > car.position.y + 10)) {
+					this.velocity.y = 0;
+					this.position.y = (Config.trainLevel * Renderer.conversionRatio) - this.height;
+					this.falling = false;
+					AudioManager.playOneOff("land");
+				}
+				else {
+					this.die();
+				}
 			}
-		}	
+		}
+
+		if(!this.jumping && !this.falling) {
+			AudioManager.playOneOff("foot_fall");
+		}
+
+		if(!this.blocking) {
+			if(this.stamina < this.maxStamina) {
+				this.stamina += this.staminaRecoverRate;
+				if(this.overloaded && this.stamina >= this.overloadRecoveryPoint) {
+					this.overloaded = false;
+				}
+				if(this.stamina >= this.maxStamina) {
+					this.stamina = this.maxStamina;
+				}
+			}
+			//if(!this.jumping && !this.falling && !this.stamina <= 0 && !this.overloaded && !this.overloadedHolding) {
+			if(!this.stamina <= 0 && !this.overloaded && !this.overloadedHolding) {
+				if(InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
+					AudioManager.playOneOff("shield_cast");
+					this.blocking = true;
+				}
+			}	
+		} else {
+			this.stamina -= this.staminaDrainRate;
+			if(this.stamina <= 0) {
+				this.stamina = 0;
+				this.overloaded = true;
+				this.blocking = false;
+				this.overloadedHolding = true;
+				console.log("drained");
+			}
+			if(!InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
+				this.blocking = false;
+			}
+		}
+
+		if(this.overloadedHolding && !InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
+			this.overloadedHolding = false;
+		}
 	} else {
-		this.stamina -= this.staminaDrainRate;
-		if(this.stamina <= 0) {
-			this.stamina = 0;
-			this.overloaded = true;
-			this.blocking = false;
-			this.overloadedHolding = true;
-			console.log("drained");
-		}
-		if(!InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
-			this.blocking = false;
+		this.velocity = Physics.applyGravity(this.velocity, this.maxVelocity);
+		if(AudioManager.getClip("death").source.ended) {
+			Main.changeState(Main.gameState, GameState.GameOver);
 		}
 	}
 
-	if(this.overloadedHolding && !InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
-		console.log("release");
-		this.overloadedHolding = false;
-	}
+		this.position.y += this.velocity.y;
+		this.boundingBox.update(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height);
 
-	this.position.y += this.velocity.y;
-	this.boundingBox.update(this.position.x, this.position.y, this.position.x + this.width, this.position.y + this.height);
+		/*if(InputManager.keyDown(InputManager.keys.ONE)) {
+			this.albusStdAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
+			this.currentAnim = this.albusStdAnim;
+		}
+		if(InputManager.keyDown(InputManager.keys.TWO)) {
+			this.albusSpellAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
+			this.currentAnim = this.albusSpellAnim;
+		}
+		if(InputManager.keyDown(InputManager.keys.THREE)) {
+			this.scorpiusStdAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
+			this.currentAnim = this.scorpiusStdAnim;
+		}
+		if(InputManager.keyDown(InputManager.keys.FOUR)) {
+			this.scorpiusSpellAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
+			this.currentAnim = this.scorpiusSpellAnim;
+		}*/
 
-	if(InputManager.keyDown(InputManager.keys.ONE)) {
-		this.albusStdAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
-		this.currentAnim = this.albusStdAnim;
-	}
-	if(InputManager.keyDown(InputManager.keys.TWO)) {
-		this.albusSpellAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
-		this.currentAnim = this.albusSpellAnim;
-	}
-	if(InputManager.keyDown(InputManager.keys.THREE)) {
-		this.scorpiusStdAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
-		this.currentAnim = this.scorpiusStdAnim;
-	}
-	if(InputManager.keyDown(InputManager.keys.FOUR)) {
-		this.scorpiusSpellAnim.setFrame(this.currentAnim.currentFrame, this.currentAnim.animationTick);
-		this.currentAnim = this.scorpiusSpellAnim;
-	}
-
-	this.currentAnim.update();
+		this.currentAnim.update();
 }
 
 Player.registerHit = function() {
 	if(!this.hit) {
+		AudioManager.playOneOff("hit");
 		this.hit = true;
 		this.lives--;
 		if(this.lives <= 0)
 			this.die();
-		console.log("hit");
 	}
 }
 
 Player.die = function() {
 	this.dead = true;
-	Main.changeState(Main.gameState, GameState.GameOver);
+	AudioManager.playOneOff("death");
+	console.log(AudioManager.clips[0]);
+	
 }
 
 Player.checkTrainCarAABB = function() {

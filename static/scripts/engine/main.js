@@ -55,6 +55,7 @@ Main.run = function() {
 
 Main.changeState = function(previousState, newState) {
 	this.gameState = newState;
+	AudioManager.stopAll();
 
 	switch(this.gameState) {
 		case GameState.MainMenu:

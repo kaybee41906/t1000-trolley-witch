@@ -29,6 +29,7 @@ TrainCarManager.update = function() {
 			this.lastCar = this.trainCars.indexOf(car);
 		}
 	}.bind(TrainCarManager));
+	AudioManager.playOneOff("train");
 }
 
 TrainCarManager.render = function() {

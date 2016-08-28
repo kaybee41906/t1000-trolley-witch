@@ -19,6 +19,7 @@ AudioManager.initialize = function() {
 	this.clips.push(new AudioClip("static/audio/effects/hit.mp3", "mpeg", "hit"));
 	this.clips.push(new AudioClip("static/audio/effects/shield_cast.mp3", "mpeg", "shield_cast"));
 	this.clips.push(new AudioClip("static/audio/effects/explosion.mp3", "mpeg", "explosion"));
+	this.clips.push(new AudioClip("static/audio/effects/train_2.mp3", "mpeg", "train"));
 }
 
 AudioManager.getClip = function(name) {
@@ -37,6 +38,12 @@ AudioManager.playOneOff = function(clip) {
 	if(audioClip != null) {
 		audioClip.play();
 	}
+}
+
+AudioManager.stopAll = function() {
+	$.each(this.clips, function(key, clip){
+		clip.stop();
+	});
 }
 
 AudioManager.update = function() {

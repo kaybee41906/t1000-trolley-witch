@@ -21,6 +21,8 @@ GrenadeManager.addGrenade = function() {
 	var position = { x: this.spawn.x, y: this.spawn.y };
 	var grenade = new Grenade(position, angle, force);
 	this.grenades.push(grenade);
+
+	AudioManager.playOneOff("grenade_throw");
 }
 
 GrenadeManager.resize = function() {
