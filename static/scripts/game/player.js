@@ -18,7 +18,7 @@ Player.initialize = function() {
 	scorpiusStdSprites.push(Renderer.getSprite("scorpius_4"));
 	scorpiusStdSprites.push(Renderer.getSprite("scorpius_5"));
 	scorpiusStdSprites.push(Renderer.getSprite("scorpius_6"));
-	this.scorpiusStdAnim = new Animation(scorpiusStdSprites, Config.animationTimer);
+	this.scorpiusStdAnim = new Animation(scorpiusStdSprites, Config.animationTimer, false);
 
 	var scorpiusSpellSprites = [];
 	scorpiusSpellSprites.push(Renderer.getSprite("scorpius_s1"));
@@ -27,7 +27,7 @@ Player.initialize = function() {
 	scorpiusSpellSprites.push(Renderer.getSprite("scorpius_s4"));
 	scorpiusSpellSprites.push(Renderer.getSprite("scorpius_s5"));
 	scorpiusSpellSprites.push(Renderer.getSprite("scorpius_s6"));
-	this.scorpiusSpellAnim = new Animation(scorpiusSpellSprites, Config.animationTimer);
+	this.scorpiusSpellAnim = new Animation(scorpiusSpellSprites, Config.animationTimer, false);
 
 	var albusStdSprites = [];
 	albusStdSprites.push(Renderer.getSprite("albus_1"));
@@ -36,7 +36,7 @@ Player.initialize = function() {
 	albusStdSprites.push(Renderer.getSprite("albus_4"));
 	albusStdSprites.push(Renderer.getSprite("albus_5"));
 	albusStdSprites.push(Renderer.getSprite("albus_6"));
-	this.albusStdAnim = new Animation(albusStdSprites, Config.animationTimer);
+	this.albusStdAnim = new Animation(albusStdSprites, Config.animationTimer, false);
 
 	var albusSpellSprites = [];
 	albusSpellSprites.push(Renderer.getSprite("albus_s1"));
@@ -45,7 +45,7 @@ Player.initialize = function() {
 	albusSpellSprites.push(Renderer.getSprite("albus_s4"));
 	albusSpellSprites.push(Renderer.getSprite("albus_s5"));
 	albusSpellSprites.push(Renderer.getSprite("albus_s6"));
-	this.albusSpellAnim = new Animation(albusSpellSprites, Config.animationTimer);
+	this.albusSpellAnim = new Animation(albusSpellSprites, Config.animationTimer, false);
 
 	this.shieldSprite = Renderer.getSprite("shield");
 
@@ -155,6 +155,11 @@ Player.update = function() {
 				if(InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
 					AudioManager.playOneOff("shield_cast");
 					this.blocking = true;
+					if(Main.selectedCharacter) {
+						this.currentAnim = this.albusSpellAnim;
+					} else {
+						this.currentAnim = this.scorpiusSpellAnim;
+					}
 				}
 			}	
 		} else {
@@ -165,9 +170,19 @@ Player.update = function() {
 				this.blocking = false;
 				this.overloadedHolding = true;
 				console.log("drained");
+				if(Main.selectedCharacter) {
+					this.currentAnim = this.albusStdAnim;
+				} else {
+					this.currentAnim = this.scorpiusStdAnim;
+				}
 			}
 			if(!InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
 				this.blocking = false;
+				if(Main.selectedCharacter) {
+					this.currentAnim = this.albusStdAnim;
+				} else {
+					this.currentAnim = this.scorpiusStdAnim;
+				}
 			}
 		}
 
