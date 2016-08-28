@@ -16,5 +16,6 @@ AudioClip.prototype.pause = function() {
 }
 
 AudioClip.prototype.stop = function() {
-	this.source.stop();
+	this.source.pause();
+	this.source.currentTime = 0;
 }

@@ -20,17 +20,17 @@ Config.initialize = function() {
 	this.masterRatio = 16/9;
 
 	this.playerStartX = 875;
-	this.playerStartY = 680;
+	this.playerStartY = 560;
 	this.playerWidth = 170;
 	this.playerHeight = 220;
 
 	this.ladyStartX = 50;
-	this.ladyStartY = 660;
+	this.ladyStartY = 540;
 	this.ladyWidth = 250;
 	this.ladyHeight = 240;
 
 	this.playerJumpArc = 300;
-	this.trainLevel = 900;
+	this.trainLevel = 780;
 
 	this.trainWidth = 4000;
 	this.trainHeight = 300;
@@ -40,6 +40,12 @@ Config.initialize = function() {
 
 	this.grenadeHeight = 40;
 	this.grenadeWidth = 40;
+
+	this.treeWidth = 400;
+	this.treeHeight = 750;
+
+	this.bg2_y = 200;
+	this.bg3_y = 100;
 }
 
 var GameState = 
