@@ -11,7 +11,9 @@ InputManager.initialize = function() {
 		"ONE": 49,
 		"TWO": 50,
 		"THREE": 51,
-		"FOUR": 52
+		"FOUR": 52,
+		"Z": 90,
+		"X": 88
 	}
 
 	this.keysDown = {};

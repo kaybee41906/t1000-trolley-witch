@@ -114,7 +114,8 @@ Renderer.sprites = {
 	], "game": [
 		{"name": "train_1", "url": "static/images/game/trains/train.png"}
 	], "general": [
-		{"name": "pumpkin", "url": "static/images/sprites/pumpkin.png"}
+		{"name": "pumpkin", "url": "static/images/sprites/pumpkin.png"},
+		{"name": "controls", "url": "static/images/general/controls.png"}
 	]
 };
 

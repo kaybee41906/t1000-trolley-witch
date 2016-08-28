@@ -24,6 +24,8 @@ CharacterSelect.initialize = function() {
 
 	this.albusSelected = true;
 	this.scorpiusSelected = false;
+
+	this.controlSprite = Renderer.getSprite("controls");
 }
 
 CharacterSelect.update = function() {
@@ -41,6 +43,9 @@ CharacterSelect.render = function() {
 	ctx.fillStyle = "white";
 	ctx.textAlign = "center";
 	ctx.fillText("Choose your character", Renderer.canvas.width/2, 100);
+
+	var img = Renderer.getResource(this.controlSprite);
+	ctx.drawImage(img, Renderer.screenWidth - (600 * Renderer.conversionRatio), Renderer.screenHeight - (250 * Renderer.conversionRatio), 500 * Renderer.conversionRatio, 250 * Renderer.conversionRatio);
 
 	// Render selection outline
 	/*

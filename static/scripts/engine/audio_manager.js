@@ -8,7 +8,7 @@ AudioManager.initialize = function() {
 	this.backgroundMusic.type = "audio/ogg";
 	this.backgroundMusic.volume = Config.musicVolume;
 	this.backgroundMusic.loop = true;
-	//this.backgroundMusic.play();
+	this.backgroundMusic.play();
 
 	document.body.appendChild(this.backgroundMusic);
 

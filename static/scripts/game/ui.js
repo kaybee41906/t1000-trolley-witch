@@ -43,7 +43,7 @@ UI.render = function() {
 	if(Player.overloaded || Player.overloadedHolding) {
 		ctx.fillStyle="red";
 	} else {
-		ctx.fillStyle = "blue";
+		ctx.fillStyle = "green";
 	}
 	ctx.fillRect(this.staminaBarPos.x, this.staminaBarPos.y, Player.stamina * Renderer.conversionRatio, 50 * Renderer.conversionRatio);
 

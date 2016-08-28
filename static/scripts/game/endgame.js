@@ -3,7 +3,7 @@
 var EndGame = {};
 
 EndGame.initialize = function() {
-	this.gameLength = 25000;
+	this.gameLength = 15000;
 	this.gameTimer = 0;
 }
 
@@ -15,8 +15,5 @@ EndGame.update = function() {
 }
 
 EndGame.render = function() {
-	var ctx = Renderer.context;
-	ctx.font = "25px Arial";
-	ctx.fillStyle = "white";
-	ctx.fillText("Game Length: " + this.gameTimer + "/" + this.gameLength, 800, 30);
+
 }

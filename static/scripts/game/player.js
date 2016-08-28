@@ -101,12 +101,12 @@ Player.update = function() {
 			}
 		}
 
-		if(InputManager.keyDown(InputManager.keys.UP_ARROW) && (!this.jumping && !this.falling) && this.jumpRelease) {
+		if((InputManager.keyDown(InputManager.keys.UP_ARROW) || InputManager.keyDown(InputManager.keys.Z)) && (!this.jumping && !this.falling) && this.jumpRelease) {
 			this.jumping = true;
 			this.jumpRelease = false;
 			AudioManager.playOneOff("jump");
 		}
-		if(!InputManager.keyDown(InputManager.keys.UP_ARROW)) {
+		if(!InputManager.keyDown(InputManager.keys.UP_ARROW) && !InputManager.keyDown(InputManager.keys.Z)) {
 			this.jumpRelease = true;
 		}
 
@@ -152,7 +152,7 @@ Player.update = function() {
 			}
 			//if(!this.jumping && !this.falling && !this.stamina <= 0 && !this.overloaded && !this.overloadedHolding) {
 			if(!this.stamina <= 0 && !this.overloaded && !this.overloadedHolding) {
-				if(InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
+				if(InputManager.keyDown(InputManager.keys.DOWN_ARROW) || InputManager.keyDown(InputManager.keys.X)) {
 					AudioManager.playOneOff("shield_cast");
 					this.blocking = true;
 					if(Main.selectedCharacter) {
@@ -176,7 +176,7 @@ Player.update = function() {
 					this.currentAnim = this.scorpiusStdAnim;
 				}
 			}
-			if(!InputManager.keyDown(InputManager.keys.DOWN_ARROW)) {
+			if(!InputManager.keyDown(InputManager.keys.DOWN_ARROW) && !InputManager.keyDown(InputManager.keys.X)) {
 				this.blocking = false;
 				if(Main.selectedCharacter) {
 					this.currentAnim = this.albusStdAnim;

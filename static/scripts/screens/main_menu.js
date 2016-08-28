@@ -33,6 +33,11 @@ MainMenu.render = function() {
 	ctx.textAlign = "center";
 	ctx.fillText("T-1000: Trolly Witch", Renderer.canvas.width/2, 100 * Renderer.conversionRatio);
 
+	ctx.font = "40px Sanlabello";
+	ctx.textAlign = "left";
+	ctx.fillText("Programming & Design: Jake Higgins", Renderer.canvas.width/2 + (120 * Renderer.conversionRatio), Renderer.screenHeight - (175 * Renderer.conversionRatio));
+	ctx.fillText("Art, Music, & Design: Kat Bolling", Renderer.canvas.width/2 + (120 * Renderer.conversionRatio), Renderer.screenHeight - (75 * Renderer.conversionRatio));
+
 	$.each(this.buttons, function(key, button) {
 		button.render();
 	});
