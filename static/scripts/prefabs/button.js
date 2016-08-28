@@ -7,10 +7,10 @@
 
 function Button(x, y, width, height, sprite, callback) {
 	this.baseDims = {'x': x, 'y': y, 'width': width, 'height': height};
-	this.x = this.baseDims.x * Renderer.conversionRatio;
-	this.y = this.baseDims.y * Renderer.conversionRatio;
-	this.width = this.baseDims.width * Renderer.conversionRatio;
-	this.height = this.baseDims.height * Renderer.conversionRatio;
+	this.x = this.baseDims.x;
+	this.y = this.baseDims.y;
+	this.width = this.baseDims.width;
+	this.height = this.baseDims.height;
 	this.sprite = sprite;
 	this.callback = callback;
 	this.boundingBox = new AABB(this.x, 
